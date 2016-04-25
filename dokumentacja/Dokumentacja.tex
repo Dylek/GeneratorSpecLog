@@ -1,0 +1,159 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[polish]{babel}
+\usepackage[MeX]{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage{times}
+\usepackage{graphicx,wrapfig}
+%\usepackage{anysize}
+%\usepackage{tikz}
+%\usetikzlibrary{calc,through,backgrounds,positioning}
+\usepackage{anysize}
+\usepackage{float}
+%\usepackage{stmaryrd}
+%\usepackage{amssymb}
+%\usepackage{amsthm}
+%\marginsize{3cm}{3cm}{3cm}{3cm}
+%\usepackage{amsmath}
+%\usepackage{color}
+%\usepackage{listings}
+%\usepackage{enumerate}
+%\lstloadlanguages{Ada,C++}
+
+
+\begin{document}	
+	% \noindent -  w tym akapicie nie bedzie wciecia
+	% \ indent - to jest aut., ale powoduje ze jest wciecie
+	% \begin{flushleft}, flushright, center - wyrownianie akapitu
+	% \textbf{pogrubiany tekst}
+	% \textit{kursywa} 
+	% 					STRONY 
+	%  http://www.codecogs.com/latex/eqneditor.php 
+	%  http://www.matematyka.pl/latex.htm
+	% 
+	\begin{titlepage}
+		
+		
+		
+		\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+		
+		\center % Center everything on the page
+		
+		%----------------------------------------------------------------------------------------
+		%	HEADING SECTIONS
+		%----------------------------------------------------------------------------------------
+		
+		\textsc{\LARGE Akademia Górniczo-Hutnicza im. Stanisława Staszica}\\[1.5cm] % Name of your university/college
+		\textsc{\Large Kraków}\\[0.5cm] % Major heading such as course name
+		\textsc{\large }\\[0.5cm] % Minor heading such as course title
+		
+		%----------------------------------------------------------------------------------------
+		%	TITLE SECTION
+		%----------------------------------------------------------------------------------------
+		
+		\HRule \\[0.4cm]
+		{\fontsize{38}{50}\selectfont Generator specyfikacji logicznej}
+		%	{ \Huge \bfseries} Symulator pożaru lasu\\[0.3cm] % Title of your document
+		\HRule \\[5.5cm]
+		
+		%----------------------------------------------------------------------------------------
+		%	AUTHOR SECTION
+		%----------------------------------------------------------------------------------------
+	
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large 
+\emph{Autorzy:}\\
+Marcin \textsc{Jędrzejczyk}\\ % Your name
+Paweł \textsc{Ogorzały} \\
+
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Prowadzący:}\\
+ Dr inż. Radosław \textsc{Klimek}  % Supervisor's Name
+\end{flushright}
+\end{minipage} \\[5cm]
+		
+		
+		%----------------------------------------------------------------------------------------
+		%	DATE SECTION
+		%----------------------------------------------------------------------------------------
+		
+		{\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
+		
+		%----------------------------------------------------------------------------------------
+		%	LOGO SECTION
+		%----------------------------------------------------------------------------------------
+		
+		%\includegraphics{Logo}\\[1cm] % Include a department/university logo - this will require the graphicx package
+		
+		%----------------------------------------------------------------------------------------
+		
+		\vfill % Fill the rest of the page with whitespace
+		
+	\end{titlepage}
+	
+	%SPIS TRESI
+	%
+	%
+	%
+	%
+	%
+	%
+	%
+	%
+	%
+	
+	\tableofcontents
+	\vfill
+	\newpage
+	%\pagebreak
+	
+	
+	
+	%\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+	
+	\section{Wstęp}
+    %	
+	
+	\indent
+	\section{Cel projektu}
+	%w sumie opisać co mamy zrobić	
+	Celem projektu jest wytworzenie programu, który dla podanego diagramu będzie w stanie go sparsować do formatu pozwalającego na sprawdzenie modelu.
+	
+	\section{Powód tworzenia generatora}
+	%Klimek sam wyisał czemu, musimy to tu wstawić
+	\begin{itemize}
+	\item Ręczne tworzenie specyfikacji logiki jest trudne dla niedoświadczonych w tym użytkowników.
+	\item Formalna weryfikacja modelu oprogramowania pozwala obniżyć koszty i zwiększyć niezawodność.
+	\item Brak takich narzędzi.
+	\end{itemize}
+	\section{Ważne}
+	\begin{itemize}
+	\item Diagram aktywności musi składać się z wcześniej zdefiniowanych wzorców, zagnieżdżanie jest dozwolone.
+	\item Diagram aktywności składa się tylko z atomicznych aktywności, zidentyfikowanych podczas tworzenia scenariuszy przypadków użycia.
+	\item Generator musi działać automatycznie, usuwa to błąd ludzki.
+	\end{itemize}
+	\section{Algorytmy}
+	Wstępny algorytm:
+	\begin{enumerate}
+	\item Analiza diagramów aktywności w celu wyciągnięcia z nich wcześniej zdefiniowanych wzorców przepływu.
+	\item Przetłumaczenie wyłuskanych wzorców na wyrażenia logiczne $ W_L$.
+	\item Generowanie specyfikacji logicznej $L$ z wyrażeń logicznych, %i.e. receiving a set of temporal logics formulas.
+	Algorytm generowania specyfikacji:
+	
+	\section{Technologie}
+	Wydaję mi się, że jezyki funkcyjne mogłyby się tu dobrze sprawdzić, może Erlang.\\
+	Chociaż w Javie mogłoby się to łatwiej napisać(lepie znamy Jave niż Erlanga).  
+	\end{enumerate}
+	
+	\section{Literatura}
+	%\indent	
+	\textbf{Radosław Klimek:} From Extraction of Logical Specifications to Deduction-Based Formal Verification of Requitements Models. Strony 61-75.\\
+	
+	
+	
+	
+\end{document}
