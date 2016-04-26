@@ -95,18 +95,9 @@ Paweł \textsc{Ogorzały} \\
 		
 	\end{titlepage}
 	
-	%SPIS TRESI
-	%
-	%
-	%
-	%
-	%
-	%
-	%
-	%
-	%
+
 	
-	\tableofcontents
+	%\tableofcontents
 	\vfill
 	\newpage
 	%\pagebreak
@@ -121,7 +112,7 @@ Paweł \textsc{Ogorzały} \\
 	\indent
 	\section{Cel projektu}
 	%w sumie opisać co mamy zrobić	
-	Celem projektu jest wytworzenie programu, który dla podanego diagramu będzie w stanie go sparsować do formatu pozwalającego na sprawdzenie modelu.
+	Celem projektu jest wytworzenie programu, który dla podanego diagramu będzie w stanie go sparsować do formatu pozwalającego na wygenerowanie specyfikacji logicznej.
 	
 	\section{Powód tworzenia generatora}
 	%Klimek sam wyisał czemu, musimy to tu wstawić
@@ -137,17 +128,48 @@ Paweł \textsc{Ogorzały} \\
 	\item Generator musi działać automatycznie, usuwa to błąd ludzki.
 	\end{itemize}
 	\section{Algorytmy}
-	Wstępny algorytm:
+	
+	Przykładowe wzorce:
+	\begin{itemize}
+	\item Sekwencja, sequence
+	\item Współbieżność, concurrent fork/join
+	\item Pętla while, loop while
+	\item Rozgałęzienie, branching
+	\end{itemize}
+		
+	\noindent Wyrażenie logiczne $W_L$ jest strukturą stworzoną według pniższych zasad:\\
+	\begin{itemize}
+	\item każdy elementarny zbiór $pat(a_i)$, gdzie $i>0$ i każde $a_i$ jest formułą atomiczną, jest wyrażeniem logicznym,
+	\item każde $pat(A)$, gdzie $i>0$ i każde $A_i$ jest albo
+	\begin{itemize}
+	\item atomiczną formułą lub
+	\item logicznym wyrażeniem $pat()$
+	\end{itemize}
+	także jest wyrażeniem logicznym.
+	\end{itemize}
+	
+	\noindent Wstępny algorytm:
 	\begin{enumerate}
 	\item Analiza diagramów aktywności w celu wyciągnięcia z nich wcześniej zdefiniowanych wzorców przepływu.
 	\item Przetłumaczenie wyłuskanych wzorców na wyrażenia logiczne $ W_L$.
 	\item Generowanie specyfikacji logicznej $L$ z wyrażeń logicznych, %i.e. receiving a set of temporal logics formulas.
-	Algorytm generowania specyfikacji:
-	
-	\section{Technologie}
-	Wydaję mi się, że jezyki funkcyjne mogłyby się tu dobrze sprawdzić, może Erlang.\\
-	Chociaż w Javie mogłoby się to łatwiej napisać(lepie znamy Jave niż Erlanga).  
 	\end{enumerate}
+		\noindent Algorytm generujący specyfikację logiczną:\\
+		\begin{enumerate}
+		\item Na początku specyfikacja jest pusta, np. L={\o};
+		\item Najbardziej zagnieżdżone wzorce są przetwarzane jako pierwsze, a następnie mniej zagnieżdżone;
+		\item Jeśli obecnie analizowany wzorzec składa się wyłącznie z formuł atomicznych, specyfikacja logiczna jest rozszerzana, poprzez sumowanie zbiorów, których formuły są złączone z obecnie analizowanym wzorcem pat(), np. $L=L \cup pat() $;
+		\item Jeżeli jakiś argument jest wzorem sam w sobie to:
+		\begin{itemize}
+		\item po pierwsze formuła $f1$ ?? , a potem
+		\item formuła $f4$ ??
+		\end{itemize}
+		tego wzoru(jeśli jakiegoś), lub w innym wypadku wziąć pod uwagę tylko najbardziej zagnieżdżony daleko? na lewo lub prawo,odpowiednio, są podstawiane osobno w miejsce wzorca jako argument.
+		\end{enumerate}
+	\section{Technologie}
+	Wydaję mi się, że języki funkcyjne mogłyby się tu dobrze sprawdzić, może Erlang.\\
+	Chociaż w Javie mogłoby się to łatwiej napisać(lepie znamy Jave niż Erlanga).  
+	
 	
 	\section{Literatura}
 	%\indent	
