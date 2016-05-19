@@ -1,8 +1,0 @@
-\select@language {polish}
-\contentsline {section}{\numberline {1}Wst\IeC {\k e}p}{2}
-\contentsline {section}{\numberline {2}Cel projektu}{2}
-\contentsline {section}{\numberline {3}Pow\IeC {\'o}d tworzenia generatora}{2}
-\contentsline {section}{\numberline {4}Wa\IeC {\.z}ne}{2}
-\contentsline {section}{\numberline {5}Algorytmy}{2}
-\contentsline {section}{\numberline {6}Technologie}{2}
-\contentsline {section}{\numberline {7}Literatura}{2}

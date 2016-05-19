@@ -170,47 +170,61 @@ Paweł \textsc{Ogorzały} \\
 
 
 	\section{Przykłady}
-	Podane wzorce:
-	
+Podane wzorce:
 	\begin{itemize}
-		\item Sequence(a,b)
+					\item Sequence(f1,f4)
 		\begin{itemize}
-			\item $\diamond$a=>b 	
-			\item ~a=>~$\diamond$b
-			\item $\Box$~( a \& b )
+			\item f1 $ \Rightarrow $  $\diamond$f4 	
+			\item $\neg$f1 $ \Rightarrow $ $\neg$ $\diamond$f4
+			\item $\Box$ $\neg$( f1  $\wedge$  f4 )
 		\end{itemize}
-		\item Concurrency(a,b,c,d)
+		\item Concurrency(f1,f2,f3,f4)
 		\begin{itemize}
-			\item a=> $\diamond$b \& $\diamond$c
-			\item ~a=> ~( $\diamond$b \& $\diamond$c)
-			\item b \& c => $\diamond$d
-			\item ~(b \& c) => ~ $\diamond$d
-			\item $\Box$~(a \& (b | c))
-			\item $\Box$~((b | c) \& d)
-			\item $\Box$~(a \& d)	
+			\item f1 $ \Rightarrow $  $\diamond$f2  $\wedge$  $\diamond$f3
+			\item $\neg$f1 $ \Rightarrow $  $\neg$( $\diamond$f2  $\wedge$  $\diamond$f3)
+			\item f2  $\wedge$  f3  $ \Rightarrow$  $\diamond$f4
+			\item $\neg$(f2  $\wedge$  f3)  $ \Rightarrow $  $\neg$ $\diamond$f4
+			\item $\Box$ $\neg$(f1  $\wedge$  (f2 \ $\vee$  f3))
+			\item $\Box$ $\neg$((f2 \ $\vee$  f3)  $\wedge$  f4)
+			\item $\Box$ $\neg$(f1  $\wedge$  f4)	
 		\end{itemize}
-		\item Branching(a,b,c,d)
+		\item Branching(f1,f2,f3,f4)
 		\begin{itemize}
-			\item a => ($\diamond$b \& ~$\diamond$c) | (~$\diamond$b \& $\diamond$c)
-			\item ~a=> ~(($\diamond$b \& ~$\diamond$c) | (~$\diamond$b \& $\diamond$c))
-			\item b | c => $\diamond$d
-			\item ~(b | c) => ~$\diamond$d
-			\item $\Box$~(a \& d)
-			\item $\Box$~(b \& c)
-			\item $\Box$~(a \& (b | c))
-			\item $\Box$~((b | c) \& d)
+			\item f1  $ \Rightarrow $  ($\diamond$f2  $\wedge$  $\neg$ $\diamond$f3)  $\vee$  ($\neg$ $\diamond$f2  $\wedge$  $\diamond$f3)
+			\item $\neg$f1  $ \Rightarrow $  $\neg$(($\diamond$f2  $\wedge$  $\neg$ $\diamond$f3) \ $\vee$  ($\neg$ $\diamond$f2  $\wedge$  $\diamond$f3))
+			\item f2 $\vee$  f3  $ \Rightarrow $  $\diamond$f4
+			\item $\neg$(f2 \ $\vee$  f3)  $ \Rightarrow$  $\neg$ $\diamond$f4
+			\item $\Box$ $\neg$(f1  $\wedge$  f4)
+			\item $\Box$ $\neg$(f2  $\wedge$  f3)
+			\item $\Box$ $\neg$(f1  $\wedge$  (f2 \ $\vee$  f3))
+			\item $\Box$ $\neg$((f2 \ $\vee$  f3)  $\wedge$  f4)
 		\end{itemize}
-		\item LoopWhile(a,b,d,d)
+		\item LoopWhile(a,b,c,d)
 		\begin{itemize}
-			\item
+			\item f1$\Rightarrow$ $\diamond$f2
+			\item $\neg$f1$\Rightarrow$ $\neg$ $\diamond$f2
+			\item f2  $\wedge$  c(f2) $\Rightarrow$ $\diamond$c $\wedge$  $\neg$ $\diamond$f4
+			\item $\neg$(f2  $\wedge$  c(f2)) $\Rightarrow$ $\neg$($\diamond$f3 $\wedge$  $\neg$ $\diamond$f4)
+			\item f2  $\wedge$  $\neg$c(f2) $\Rightarrow$ $\neg$ $\diamond$f3  $\wedge$  $\diamond$f4
+			\item $\neg$(f2  $\wedge$  $\neg$c(f2) $\Rightarrow$ $\neg$($\neg$ $\diamond$f3 $\wedge$  $\diamond$f4)
+			\item f3 $\Rightarrow$ $\diamond$f2
+			\item $\neg$f3$\Rightarrow$ $\neg$ $\diamond$f2
+			\item $\Box$ $\neg$(f1  $\wedge$  f2)
+			\item $\Box$ $\neg$(f1  $\wedge$  f3)
+			\item $\Box$ $\neg$(f1  $\wedge$  f4)
+			\item $\Box$ $\neg$(f2  $\wedge$  f3)
+			\item $\Box$ $\neg$(f2  $\wedge$  f4)
+			\item $\Box$ $\neg$(f3  $\wedge$  f4) 
 		\end{itemize}
-	\end{itemize}		
+	\end{itemize}	
+	
 	Wyjście programu dla:
 	\begin{itemize}
 	\item 	$W_L=$ Seq(Seq(a,b),c) to: \\
-	$ L=\{ \diamond a \Rightarrow b , ~a\Rightarrow ~\diamond b, \Box ~(a \& b)\} \cup $ \\
-	$ \cup \{\diamond a \Rightarrow c , ~a\Rightarrow ~\diamond c, \Box~(a \& c)\} \cup $\\
-	$ \cup \{\diamond b \Rightarrow c , ~b\Rightarrow ~\diamond c, \Box ~(b \& c\} $
+	$ L=\{ \diamond a \Rightarrow b , \neg a\Rightarrow \neg \diamond b, \Box \neg (a \wedge  b)\} \cup $ \\
+	$ \cup \{\diamond a \Rightarrow c , \neg a\Rightarrow \neg \diamond c, \Box\neg (a \wedge  c)\} \cup $\\
+	$ \cup \{\diamond b \Rightarrow c , \neg b\Rightarrow \neg \diamond c, \Box \neg (b \wedge  c)\} $
+	
 	
 		
 	\end{itemize}
