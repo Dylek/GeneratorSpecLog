@@ -220,13 +220,39 @@ Podane wzorce:
 	
 	Wyjście programu dla:
 	\begin{itemize}
+	\item $W_L= $ Concur(a,b,c,d) to :
+	$\{ a   \Rightarrow     \diamond b   \wedge    \diamond c $,
+		$	  \neg a   \Rightarrow     \neg (  \diamond b   \wedge    \diamond c)$,
+			$ b   \wedge   c    \Rightarrow    \diamond d$,
+			$  \neg (b   \wedge   c)    \Rightarrow     \neg   \diamond d$,
+			$  \Box   \neg (a   \wedge   (b \  \vee   c))$,
+			$  \Box   \neg ((b \  \vee   c)   \wedge   d)$,
+			$  \Box   \neg (a   \wedge   d)\}$
+	
 	\item 	$W_L=$ Seq(Seq(a,b),c) to: \\
-	$ L=\{ \diamond a \Rightarrow b , \neg a\Rightarrow \neg \diamond b, \Box \neg (a \wedge  b)\} \cup $ \\
+	$ L=\{  a \Rightarrow \diamond b , \neg a\Rightarrow \neg \diamond b, \Box \neg (a \wedge  b)\} \cup $ \\
 	$ \cup \{\diamond a \Rightarrow c , \neg a\Rightarrow \neg \diamond c, \Box\neg (a \wedge  c)\} \cup $\\
 	$ \cup \{\diamond b \Rightarrow c , \neg b\Rightarrow \neg \diamond c, \Box \neg (b \wedge  c)\} $
 	
-	
-		
+	\item Branch(Seq(a,b),c,d,e) to:\\
+	$ L=$\\$ \{  a \Rightarrow \diamond b , \neg a\Rightarrow \neg \diamond b, \Box \neg (a \wedge  b)\} $ 
+	$\cup 	\{	  a    \Rightarrow    ( \diamond c   \wedge    \neg   \diamond d)   \vee   ( \neg   \diamond c   \wedge    \diamond d)$,
+			  $ \neg a    \Rightarrow     \neg (( \diamond c   \wedge    \neg   \diamond d)  \vee  \vee ( \neg   \diamond c   \wedge    \diamond d))$,
+			 $ c  \vee d    \Rightarrow     \diamond e $,
+			  $ \neg (c  \vee   d)    \Rightarrow    \neg   \diamond e$ ,
+			   $\Box   \neg (a   \wedge   e)$ ,
+			   $\Box   \neg (c   \wedge   d)$,
+			   $\Box   \neg (a   \wedge   (c \  \vee   d))$,
+			   $\Box   \neg ((c \  \vee   d)   \wedge   e)\} $			  
+	$\cup 	\{	  b    \Rightarrow    ( \diamond c   \wedge    \neg   \diamond d)   \vee   ( \neg   \diamond c   \wedge    \diamond d)$,
+			  $ \neg b    \Rightarrow     \neg (( \diamond c   \wedge    \neg   \diamond d) \  \vee   ( \neg   \diamond c   \wedge    \diamond d))$,
+			 $ c  \vee   d    \Rightarrow     \diamond e $,
+			  $ \neg (c \  \vee   d)    \Rightarrow    \neg   \diamond e$ ,
+			   $\Box   \neg (b   \wedge   e)$ ,
+			   $\Box   \neg (c   \wedge   d)$,
+			   $\Box   \neg (b   \wedge   (c   \vee   d))$,
+			   $\Box   \neg ((c \  \vee   d)   \wedge   e)\}$
+			 		   		
 	\end{itemize}
 	
 	\section{Pseudokod}
