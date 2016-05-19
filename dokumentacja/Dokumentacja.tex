@@ -216,8 +216,41 @@ Paweł \textsc{Ogorzały} \\
 	\end{itemize}
 	
 	\section{Pseudokod}
+	\textbf{Input:} Wyrażenie logiczne $W_L$, zdefiniowane wzorce przepływu $P$\\
+	\textbf{Output:} Specyfikacja logiczna $L$
 	
-
+	$L:=0$
+	
+	\textbf{for} $l:=max(W'_L)$ \textbf{to} 1 \textbf{do}
+	
+	\hspace{0.5cm}$p:=getPat(W'_L,l);$
+	
+	\hspace{0.5cm}\textbf{repeat}
+	
+	\hspace{1cm}\textbf{if} pattern $p$ consists only atomic formulas \textbf{then}
+	
+	\hspace{1.5cm}$L:=L\cup p.pat()$
+	
+	\hspace{1cm}\textbf{end if}
+	
+	\hspace{1cm}\textbf{if} any argument of the $p$ is a pattern itself \textbf{then}
+	
+	\hspace{1.5cm}Specification $L'$ for every combination $C_i=1,..n$, i.e. $L'(C_i)$, are calculated 
+	
+	 \hspace{1.5cm}considering $ini-$ and $fin$-expressions for every non-atomic arguments and 
+	 
+	 \hspace{1.5cm}substituting consolidated 
+	expressions in places of these patterns as arguments, i.e. 
+	
+	\hspace{1.5cm}$L:=L\cup L'(C_i)$
+	
+	\hspace{1cm}\textbf{end if}
+	
+	\hspace{1cm}$p:=getPat(W'_L,l)$
+	
+	\hspace{0.5cm}\textbf{until} $p$ is empty
+	
+	\textbf{end for}
 	
 	\section{Literatura}
 	%\indent	
