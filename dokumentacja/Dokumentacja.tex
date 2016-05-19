@@ -3,6 +3,7 @@
 \usepackage[MeX]{polski}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{latexsym}
 %\usepackage{times}
 \usepackage{graphicx,wrapfig}
 %\usepackage{anysize}
@@ -106,7 +107,7 @@ Paweł \textsc{Ogorzały} \\
 	
 	%\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
 	
-	\section{Wstęp}
+%	\section{Wstęp}
     %	
 	
 	\indent
@@ -129,7 +130,7 @@ Paweł \textsc{Ogorzały} \\
 	\end{itemize}
 	\section{Algorytmy}
 	
-	Przykładowe wzorce:
+	Wzorce przepływu:
 	\begin{itemize}
 	\item Sekwencja, sequence
 	\item Współbieżność, concurrent fork/join
@@ -137,7 +138,7 @@ Paweł \textsc{Ogorzały} \\
 	\item Rozgałęzienie, branching
 	\end{itemize}
 		
-	\noindent Wyrażenie logiczne $W_L$ jest strukturą stworzoną według pniższych zasad:\\
+	\noindent Wyrażenie logiczne $W_L$ jest strukturą stworzoną według poniższych zasad:\\
 	\begin{itemize}
 	\item każdy elementarny zbiór $pat(a_i)$, gdzie $i>0$ i każde $a_i$ jest formułą atomiczną, jest wyrażeniem logicznym,
 	\item każde $pat(A)$, gdzie $i>0$ i każde $A_i$ jest albo
@@ -147,29 +148,76 @@ Paweł \textsc{Ogorzały} \\
 	\end{itemize}
 	także jest wyrażeniem logicznym.
 	\end{itemize}
-	
 	\noindent Wstępny algorytm:
 	\begin{enumerate}
 	\item Analiza diagramów aktywności w celu wyciągnięcia z nich wcześniej zdefiniowanych wzorców przepływu.
 	\item Przetłumaczenie wyłuskanych wzorców na wyrażenia logiczne $ W_L$.
 	\item Generowanie specyfikacji logicznej $L$ z wyrażeń logicznych, %i.e. receiving a set of temporal logics formulas.
 	\end{enumerate}
-		\noindent Algorytm generujący specyfikację logiczną:\\
+	
+ 		\noindent Algorytm $\Pi$ generujący specyfikację logiczną :\\
 		\begin{enumerate}
 		\item Na początku specyfikacja jest pusta, np. L={\o};
 		\item Najbardziej zagnieżdżone wzorce są przetwarzane jako pierwsze, a następnie mniej zagnieżdżone;
 		\item Jeśli obecnie analizowany wzorzec składa się wyłącznie z formuł atomicznych, specyfikacja logiczna jest rozszerzana, poprzez sumowanie zbiorów, których formuły są złączone z obecnie analizowanym wzorcem pat(), np. $L=L \cup pat() $;
 		\item Jeżeli jakiś argument jest wzorem sam w sobie to:
 		\begin{itemize}
-		\item po pierwsze formuła $f1$ ?? , a potem
-		\item formuła $f4$ ??
+		\item po pierwsze formuła $f1$  , a potem
+		\item formuła $fk$
 		\end{itemize}
 		tego wzoru(jeśli jakiegoś), lub w innym wypadku wziąć pod uwagę tylko najbardziej zagnieżdżony daleko? na lewo lub prawo,odpowiednio, są podstawiane osobno w miejsce wzorca jako argument.
 		\end{enumerate}
-	\section{Technologie}
-	Wydaję mi się, że języki funkcyjne mogłyby się tu dobrze sprawdzić, może Erlang.\\
-	Chociaż w Javie mogłoby się to łatwiej napisać(lepie znamy Jave niż Erlanga).  
+
+
+	\section{Przykłady}
+	Podane wzorce:
 	
+	\begin{itemize}
+		\item Sequence(a,b)
+		\begin{itemize}
+			\item $\diamond$a=>b 	
+			\item ~a=>~$\diamond$b
+			\item $\Box$~( a \& b )
+		\end{itemize}
+		\item Concurrency(a,b,c,d)
+		\begin{itemize}
+			\item a=> $\diamond$b \& $\diamond$c
+			\item ~a=> ~( $\diamond$b \& $\diamond$c)
+			\item b \& c => $\diamond$d
+			\item ~(b \& c) => ~ $\diamond$d
+			\item $\Box$~(a \& (b | c))
+			\item $\Box$~((b | c) \& d)
+			\item $\Box$~(a \& d)	
+		\end{itemize}
+		\item Branching(a,b,c,d)
+		\begin{itemize}
+			\item a => ($\diamond$b \& ~$\diamond$c) | (~$\diamond$b \& $\diamond$c)
+			\item ~a=> ~(($\diamond$b \& ~$\diamond$c) | (~$\diamond$b \& $\diamond$c))
+			\item b | c => $\diamond$d
+			\item ~(b | c) => ~$\diamond$d
+			\item $\Box$~(a \& d)
+			\item $\Box$~(b \& c)
+			\item $\Box$~(a \& (b | c))
+			\item $\Box$~((b | c) \& d)
+		\end{itemize}
+		\item LoopWhile(a,b,d,d)
+		\begin{itemize}
+			\item
+		\end{itemize}
+	\end{itemize}		
+	Wyjście programu dla:
+	\begin{itemize}
+	\item 	$W_L=$ Seq(Seq(a,b),c) to: \\
+	$ L=\{ \diamond a \Rightarrow b , ~a\Rightarrow ~\diamond b, \Box ~(a \& b)\} \cup $ \\
+	$ \cup \{\diamond a \Rightarrow c , ~a\Rightarrow ~\diamond c, \Box~(a \& c)\} \cup $\\
+	$ \cup \{\diamond b \Rightarrow c , ~b\Rightarrow ~\diamond c, \Box ~(b \& c\} $
+	
+		
+	\end{itemize}
+	
+	\section{Pseudokod}
+	
+
 	
 	\section{Literatura}
 	%\indent	

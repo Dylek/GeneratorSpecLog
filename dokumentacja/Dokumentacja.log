@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.10.6)  26 APR 2016 22:54
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.10.6)  19 MAY 2016 22:23
 entering extended mode
 **Dokumentacja.tex
 
@@ -327,6 +327,12 @@ Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 ))
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\latexsym.sty"
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
+)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
@@ -385,20 +391,20 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 )
 (C:\Users\Dylek\Documents\GitHub\GeneratorSpecLog\dokumentacja\Dokumentacja.aux
 )
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT4/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OT4/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
  ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count91
@@ -415,57 +421,61 @@ LaTeX Font Info:    ... okay on input line 24.
 )
 
 LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <38> not available
-(Font)              size <35.83> substituted on input line 55.
+(Font)              size <35.83> substituted on input line 56.
 
-LaTeX Font Info:    Try loading font information for OML+plm on input line 70.
+LaTeX Font Info:    Try loading font information for OML+plm on input line 71.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\polski\omlplm.fd"
 File: omlplm.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
-LaTeX Font Info:    Try loading font information for OMS+plsy on input line 70.
+LaTeX Font Info:    Try loading font information for OMS+plsy on input line 71.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\polski\omsplsy.fd"
 File: omsplsy.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
-LaTeX Font Info:    Try loading font information for OMX+plex on input line 70.
+LaTeX Font Info:    Try loading font information for OMX+plex on input line 71.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\polski\omxplex.fd"
 File: omxplex.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <10.95> on input line 70.
+(Font)              <10.95> on input line 71.
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <8> on input line 70.
+(Font)              <8> on input line 71.
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <6> on input line 70.
- [1
+(Font)              <6> on input line 71.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 71.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ulasy.fd"
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+) [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 120.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 121.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 120.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 121.
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--141
+Underfull \hbox (badness 10000) in paragraph at lines 141--142
 
  []
 
 [1]
-Underfull \hbox (badness 10000) in paragraph at lines 157--158
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 176--177
+Underfull \hbox (badness 10000) in paragraph at lines 158--159
 
  []
 
 [2]
+Underfull \hbox (badness 10000) in paragraph at lines 224--225
+
+ []
+
+[3]
 (C:\Users\Dylek\Documents\GitHub\GeneratorSpecLog\dokumentacja\Dokumentacja.aux
 )
 
@@ -474,11 +484,11 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 2316 strings out of 493921
- 28275 string characters out of 3147282
- 82353 words of memory out of 3000000
- 5575 multiletter control sequences out of 15000+200000
- 15901 words of font info for 37 fonts, out of 3000000 for 9000
+ 2338 strings out of 493921
+ 28788 string characters out of 3147282
+ 84280 words of memory out of 3000000
+ 5588 multiletter control sequences out of 15000+200000
+ 16219 words of font info for 40 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  27i,4n,24p,280b,257s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/pl/plms.enc} <C:\Users\Dylek\App
@@ -494,13 +504,14 @@ ek\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1200.pk> <C:
 83.pk> <C:\Users\Dylek\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi
 600\eccc1440.pk> <C:\Users\Dylek\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknap
 pen\ec\dpi600\eccc1728.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/pl/plmi10.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/pl/plmi8.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/pl/plr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/pl/plsy10.pfb>
-Output written on Dokumentacja.pdf (3 pages, 118916 bytes).
+nts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/latx
+font/lasy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/pl/plmi10.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/pl/plmi8.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/public/pl/plr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/pl/plsy10.pfb>
+Output written on Dokumentacja.pdf (4 pages, 130901 bytes).
 PDF statistics:
- 295 PDF objects out of 1000 (max. 8388607)
+ 302 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
