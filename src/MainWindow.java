@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -162,6 +164,12 @@ public class MainWindow extends JFrame {
                 generateSpecLog();
             }
         });
+        generatedOutput.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+               System.out.println("COS SIE ZMIENIA w polu pokazującym wczytane zasady");
+            }
+        });
     }
 
     private void parseFileIntoRules(File file){
@@ -188,7 +196,8 @@ public class MainWindow extends JFrame {
 
     private void generateSpecLog(){
         System.out.println("Generuje");
-        generatedOutput.setText("Wygenerowana logika:\n");
+
+        generatedOutput.setText("Dla formuly: "+formulaField.getText()+"\nWygenerowano logike:\n");
         for(String s:loadedFileLines){
             generatedOutput.append("\n"+s);
         }
