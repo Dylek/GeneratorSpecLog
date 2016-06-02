@@ -22,6 +22,7 @@ public class MainWindow extends JFrame {
 
     private JTextArea generatedOutput ;
     private JTextArea loadedLogicRules;
+    private JTextArea formulaField;
     private ArrayList <String> loadedFileLines;
 
     private JFileChooser fileChooser;
@@ -31,11 +32,13 @@ public class MainWindow extends JFrame {
     private JButton saveFileB;
     private JScrollPane rulesPanel;
     private JScrollPane outputPanel;
+    private  JScrollPane formulaPane;
 
     public MainWindow(){
         mainFrame=new JFrame();
         generatedOutput = new JTextArea("");
         loadedLogicRules = new JTextArea("");
+        formulaField=new JTextArea("");
         generateB=new JButton("Generate");
         loadFileB=new JButton("Open File");
         saveFileB=new JButton("Save File");
@@ -43,10 +46,11 @@ public class MainWindow extends JFrame {
         loadedFileLines=new ArrayList<String>();
         rulesPanel=new JScrollPane(loadedLogicRules);
         outputPanel=new JScrollPane(generatedOutput);
+        formulaPane=new JScrollPane(formulaField);
 
-        rulesPanel.setPreferredSize(new Dimension(450,500));
-        outputPanel.setPreferredSize(new Dimension(450,500));
-
+        rulesPanel.setPreferredSize(new Dimension(450,400));
+        outputPanel.setPreferredSize(new Dimension(450,400));
+        formulaPane.setPreferredSize(new Dimension(900,50));
         Container container = mainFrame.getContentPane();
         container.setLayout(new FlowLayout(FlowLayout.LEFT));
 
@@ -62,16 +66,18 @@ public class MainWindow extends JFrame {
         mainFrame.setTitle("Generator Specyfikacji Logicznej");
         mainFrame.setResizable(false);
         mainFrame.setVisible(true);
-
+        container.add(formulaPane);
         container.add(rulesPanel);
+
         container.add(outputPanel);
 
         loadListeners();
 
-        generatedOutput.setText("tu poleci wygenerowana specyfikacja");
+        generatedOutput.setText("Miejsce na wygenerowaną specyfikację");
         generatedOutput.updateUI();
-        loadedLogicRules.setText("Tu polecą wczytane zasady logiki, m.in Sequence,Concurrent ");
+        loadedLogicRules.setText("Miejsce na zasady logiki, m.in Sequence,Concurrent ");
         generatedOutput.updateUI();
+        formulaField.setText("Miejsce na formule");
     }
     private void loadListeners(){
         loadFileB.addActionListener(new ActionListener() {
