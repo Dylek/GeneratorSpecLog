@@ -21,6 +21,7 @@
 %\usepackage{enumerate}
 %\lstloadlanguages{Ada,C++}
 
+		\newcommand\tab[1][1cm]{\hspace*{#1}}
 
 \begin{document}	
 	% \noindent -  w tym akapicie nie bedzie wciecia
@@ -32,8 +33,8 @@
 	%  http://www.codecogs.com/latex/eqneditor.php 
 	%  http://www.matematyka.pl/latex.htm
 	% 
+	
 	\begin{titlepage}
-		
 		
 		
 		\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
@@ -170,7 +171,7 @@ Paweł \textsc{Ogorzały} \\
 
 
 	\section{Przykłady}
-Podane wzorce:
+Podane wzorce P:
 	\begin{itemize}
 					\item Sequence(f1,f4)
 		\begin{itemize}
@@ -220,7 +221,7 @@ Podane wzorce:
 	
 	Wyjście programu dla:
 	\begin{itemize}
-	\item $W_L= $ Concur(a,b,c,d) to :
+	\item $W_L= $ Concur(a,b,c,d) to:\\
 	$L= \{ a   \Rightarrow     \diamond b   \wedge    \diamond c $,
 		$	  \neg a   \Rightarrow     \neg (  \diamond b   \wedge    \diamond c)$,
 			$ b   \wedge   c    \Rightarrow    \diamond d$,
@@ -231,8 +232,8 @@ Podane wzorce:
 	
 	\item 	$W_L=$ Seq(Seq(a,b),c) to: \\
 	$ L=\{  a \Rightarrow \diamond b , \neg a\Rightarrow \neg \diamond b, \Box \neg (a \wedge  b)\} \cup $ \\
-	$ \cup \{\diamond a \Rightarrow c , \neg a\Rightarrow \neg \diamond c, \Box\neg (a \wedge  c)\} \cup $\\
-	$ \cup \{\diamond b \Rightarrow c , \neg b\Rightarrow \neg \diamond c, \Box \neg (b \wedge  c)\} $
+	$ \cup \{ a \Rightarrow c , \neg a\Rightarrow \neg \diamond c, \Box\neg (a \wedge  c)\} \cup $\\
+	$ \cup \{ b \Rightarrow c , \neg b\Rightarrow \neg \diamond c, \Box \neg (b \wedge  c)\} $
 	
 	\item Branch(Seq(a,b),c,d,e) to:\\
 	$ L=$\\$ \{  a \Rightarrow \diamond b , \neg a\Rightarrow \neg \diamond b, \Box \neg (a \wedge  b)\} $ 
@@ -256,46 +257,34 @@ Podane wzorce:
 	\end{itemize}
 	
 	\section{Pseudokod}
-	\textbf{Input:} Wyrażenie logiczne $W_L$, zdefiniowane wzorce przepływu $P$\\
+	\textbf{Input:} Wyrażenie logiczne $W_L$, zdefiniowane wzorce przepływu(nie puste) $P$\\
 	\textbf{Output:} Specyfikacja logiczna $L$
 	
 	$L:=0$
 	
-	\textbf{for} $l:=max(W'_L)$ \textbf{to} 1 \textbf{do}
+	\textbf{for} $i:=1$ \textbf{to} $|W_L|$ \textbf{do}\\
+	\tab $L2:=W_L[i]P'\backslash \{W_L[i]'P.f_{en},W_L[i]'P.f_{ex}\};$\\	
+	\tab \textbf{for} $j:=1$ \textbf{to} $|W_L[i]|$ \textbf{do}\\
+		\tab \tab \textbf{if} $W_L[i] \uparrow a_j$ is non-atomic then \\
+	\tab \tab \tab	$agg:=(W_L[i]'P\uparrow a_J())^e+"V"+(W_L[i]'P\uparrow a_J())^x;$\\
+	\tab \tab \tab	replace in L2 every pattern $W_L[i]'P\uparrow a_j()$ by agg;\\
+	\tab \tab	\textbf{end if}\\
+	\tab  \textbf{end for}\\
+	\tab  L:=L $\cup$ L2 \\
+	\tab[0.5cm]\textbf{end for}
+	\section{Wygląd GUI}
 	
-	\hspace{0.5cm}$p:=getPat(W'_L,l);$
+	\begin{figure}[H]
+	\centerline{\includegraphics[scale=0.6]{GUI}}
+	\caption{Interfejs graficzny}
+	\end{figure}%
 	
-	\hspace{0.5cm}\textbf{repeat}
-	
-	\hspace{1cm}\textbf{if} pattern $p$ consists only atomic formulas \textbf{then}
-	
-	\hspace{1.5cm}$L:=L\cup p.pat()$
-	
-	\hspace{1cm}\textbf{end if}
-	
-	\hspace{1cm}\textbf{if} any argument of the $p$ is a pattern itself \textbf{then}
-	
-	\hspace{1.5cm}Specification $L'$ for every combination $C_i=1,..n$, i.e. $L'(C_i)$, are calculated 
-	
-	 \hspace{1.5cm}considering $ini-$ and $fin$-expressions for every non-atomic arguments and 
-	 
-	 \hspace{1.5cm}substituting consolidated 
-	expressions in places of these patterns as arguments, i.e. 
-	
-	\hspace{1.5cm}$L:=L\cup L'(C_i)$
-	
-	\hspace{1cm}\textbf{end if}
-	
-	\hspace{1cm}$p:=getPat(W'_L,l)$
-	
-	\hspace{0.5cm}\textbf{until} $p$ is empty
-	
-	\textbf{end for}
+
 	
 	\section{Literatura}
 	%\indent	
 	\textbf{Radosław Klimek:} From Extraction of Logical Specifications to Deduction-Based Formal Verification of Requitements Models. Strony 61-75.\\
-	
+		\textbf{Radosław Klimek:} Elicitation of logical specifications from RUP-like processes for formal verification.\\
 	
 	
 	
