@@ -78,6 +78,9 @@ public class MainWindow extends JFrame {
         generatedOutput.setText("Miejsce na wygenerowaną specyfikację");
         generatedOutput.updateUI();
         loadedLogicRules.setText("Miejsce na zasady logiki, m.in Sequence,Concurrent ");
+        /**
+         * po wczytaniu nie zmieniamy już zasad logiki
+         */
         loadedLogicRules.setEditable(false);
         generatedOutput.updateUI();
         formulaField.setText("Miejsce na formule");
@@ -165,6 +168,8 @@ public class MainWindow extends JFrame {
                 generateSpecLog();
             }
         });
+
+        //to raczej jest do wywalenia
         generatedOutput.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
@@ -177,6 +182,7 @@ public class MainWindow extends JFrame {
         loadedLogicRules.setText("Wczytane zasady:\n");
         System.out.println("Parsuje");
 
+        //osobna zmienna na logike z pliku, a osobna na wyświeltanies
         try {
             Scanner scanner=new Scanner(file);
 
@@ -199,6 +205,9 @@ public class MainWindow extends JFrame {
         System.out.println("Generuje");
 
         generatedOutput.setText("Dla formuly: "+formulaField.getText()+"\nWygenerowano logike:\n");
+        /**
+         * TODO tutaj trzeba zaimplementować trzon algorytmu
+         */
         for(String s:loadedFileLines){
             generatedOutput.append("\n"+s);
         }

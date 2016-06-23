@@ -1,0 +1,10 @@
+pobieram 1 wzorzec
+za  znakiem = usuwam { i }, potem String.split(rpzecinek,s³owo) i mam podzielone na kilka logicznych tegesów
+wczseœnmiej mogê np replaceAll(f1,zróbCoœ)
+
+
+w sumie Split po } mam wyci¹gniête wzorce, na tym split po { , mam podzia³ na nazwe wzorca i jego logike
+
+
+
+Sebastian proponowa³ ogarn¹æ String Template
