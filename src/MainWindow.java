@@ -78,6 +78,7 @@ public class MainWindow extends JFrame {
         generatedOutput.setText("Miejsce na wygenerowaną specyfikację");
         generatedOutput.updateUI();
         loadedLogicRules.setText("Miejsce na zasady logiki, m.in Sequence,Concurrent ");
+        loadedLogicRules.setEditable(false);
         generatedOutput.updateUI();
         formulaField.setText("Miejsce na formule");
     }
