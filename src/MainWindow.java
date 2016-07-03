@@ -1,4 +1,7 @@
 import javax.swing.*;
+import javax.swing.plaf.metal.DefaultMetalTheme;
+import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.plaf.metal.OceanTheme;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +23,8 @@ import java.util.Scanner;
  * Created by Dylek on 2016-05-27.
  */
 public class MainWindow extends JFrame {
+
+    final static String LOOKANDFEEL="System";
     private JFrame mainFrame;
 
     private JTextArea generatedOutput ;
@@ -37,10 +42,16 @@ public class MainWindow extends JFrame {
     private  JScrollPane formulaPane;
 
     public MainWindow(){
+        initLookAndFeel();
         mainFrame=new JFrame();
+
         generatedOutput = new JTextArea("");
+        generatedOutput.setFont(new Font("Verdena",Font.BOLD,14));
         loadedLogicRules = new JTextArea("");
+        loadedLogicRules.setFont(new Font("Verdena",Font.PLAIN,15));
         formulaField=new JTextArea("");
+        formulaField.setFont(new Font("Verdena",Font.BOLD,14));
+
         generateB=new JButton("Generate");
         loadFileB=new JButton("Open File");
         saveFileB=new JButton("Save File");
@@ -50,9 +61,9 @@ public class MainWindow extends JFrame {
         outputPanel=new JScrollPane(generatedOutput);
         formulaPane=new JScrollPane(formulaField);
 
-        rulesPanel.setPreferredSize(new Dimension(450,400));
-        outputPanel.setPreferredSize(new Dimension(450,400));
-        formulaPane.setPreferredSize(new Dimension(900,50));
+        rulesPanel.setPreferredSize(new Dimension(475,450));
+        outputPanel.setPreferredSize(new Dimension(475,450));
+        formulaPane.setPreferredSize(new Dimension(955,50));
         Container container = mainFrame.getContentPane();
         container.setLayout(new FlowLayout(FlowLayout.LEFT));
 
@@ -62,7 +73,7 @@ public class MainWindow extends JFrame {
         menuBar.add(saveFileB);
         mainFrame.setJMenuBar(menuBar);
 
-        mainFrame.setSize(new Dimension(1000,600));
+        mainFrame.setSize(new Dimension(980,600));
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setTitle("Generator Specyfikacji Logicznej");
@@ -85,6 +96,22 @@ public class MainWindow extends JFrame {
         generatedOutput.updateUI();
         formulaField.setText("Miejsce na formule");
     }
+
+    private void initLookAndFeel() {
+       try{
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+           e.printStackTrace();
+       } catch (InstantiationException e) {
+           e.printStackTrace();
+       } catch (ClassNotFoundException e) {
+           e.printStackTrace();
+       }
+
+    }
+
     private void loadListeners(){
         loadFileB.addActionListener(new ActionListener() {
             @Override
@@ -169,13 +196,7 @@ public class MainWindow extends JFrame {
             }
         });
 
-        //to raczej jest do wywalenia
-        generatedOutput.addPropertyChangeListener(new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-               System.out.println("COS SIE ZMIENIA w polu pokazującym wczytane zasady");
-            }
-        });
+
     }
 
     private void parseFileIntoRules(File file){
