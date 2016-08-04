@@ -1,0 +1,31 @@
+git@github.com:Dylek/GeneratorSpecLog.git
+
+Seq(Seq(a,Seq(a,b)),c)
+/\  /________________\
+|    |
+|	 |substring(indexOf("(")+1,lastindesof(")")-1) +-1 bo po co mi  nawiasy po wyłuskaniu
+|
+|substring(0,indexOf("("))
+
+Seq(a,Seq(a,b)),c
+/\ do Seq bez problemu się dostanę, ale jak zrobić bardziej uniwersalne dostawanie się do "c",
+po split(,) nie mogę , ale ale !!!!<( |)><( |)>!!!!! to co jest pomiędzy ( a ) można zmienić na "puste",
+wtedy nie przeszkadzałby mi , w split. Dzięki temu mam c nawet gdy Concur(a,Seq(a,b),Seq(a,b),d), bo
+Concur(a,Seq(a,b),Seq(a,b),d)==magia==> Concur(a,Seq(),Seq(),d)==split==> temp[0]=a,temp[1]=Seq(),
+temp[2]=Seq(),temp[3]=d
+
+ok jeden problem z głowy
+
+co dalej
+
+
+z tego jak zrozumiałem przykłądy
+Seq(Seq(a,b),c)
+robimy
+Seq(a,b)v Seq(a,c) v Seq(b,c)
+czyli w miejsce Formuły wstawiamy każdy poszczególny argument tejże formuły, aż nie "zabraknie" nam formuł,
+w sensie nie będzie już pojawiać się coś takiego: Seq(Seq(a,b),c);
+
+
+
+
