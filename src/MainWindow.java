@@ -231,8 +231,9 @@ public class MainWindow extends JFrame {
         }
         System.out.println("Wczytano");
         loadedLogicRules.append("\n LINIAaaaaaa ");
-        String[] splitFirst=fileText.split("}");
 
+        //Kod odpowiedzialkny za wyłuskiwanie zasad, atrubutów i logiki
+        String[] splitFirst=fileText.split("}");
         for(int i=0;i<splitFirst.length;i++){
 
             String rule;
@@ -248,6 +249,11 @@ public class MainWindow extends JFrame {
         }
         loadedLogicRules.append("\n LINIAaaaaaa ");
 
+
+        /**
+         * TODO debug do wurzycenia przed oddaniem,
+         * sprawdzam czy dobrze wyłuskuje poszcególne rzeczy
+         */
         for(String key: ruleAtt.keySet()){
             loadedLogicRules.append("\n rule: "+key+"\n attr:"+getCos(ruleAtt.get(key)));
         }
