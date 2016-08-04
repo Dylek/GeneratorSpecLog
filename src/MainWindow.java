@@ -16,6 +16,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
 
@@ -41,7 +42,15 @@ public class MainWindow extends JFrame {
     private JScrollPane outputPanel;
     private  JScrollPane formulaPane;
 
+//WAŻNE
+    Hashtable<String,String[]> ruleAtt;
+    Hashtable<String,String[]> ruleLogic;
+
     public MainWindow(){
+
+         ruleAtt=new Hashtable<>();
+        ruleLogic=new Hashtable<>();
+
         initLookAndFeel();
         mainFrame=new JFrame();
 
@@ -202,24 +211,49 @@ public class MainWindow extends JFrame {
     private void parseFileIntoRules(File file){
         loadedLogicRules.setText("Wczytane zasady:\n");
         System.out.println("Parsuje");
+        String fileText="";
 
         //osobna zmienna na logike z pliku, a osobna na wyświeltanies
         try {
             Scanner scanner=new Scanner(file);
-
+            String temp="";
             while(scanner.hasNextLine()){
-                loadedFileLines.add(scanner.nextLine());
+                temp=scanner.nextLine();
+                loadedFileLines.add(temp);
+                fileText=fileText.concat(temp);
             }
-
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        //wyświetlanie wczytanych reguł
         for(String s:loadedFileLines){
-            loadedLogicRules.append("\n"+s);
+            loadedLogicRules.append("\n  "+s);
         }
         System.out.println("Wczytano");
+        loadedLogicRules.append("\n LINIAaaaaaa ");
+        String[] splitFirst=fileText.split("}");
 
+        for(int i=0;i<splitFirst.length;i++){
+
+            String rule;
+            String[] attrs;
+            String[] logic;
+            rule=splitFirst[i].substring(0,splitFirst[i].indexOf("("));
+
+            attrs=splitFirst[i].substring(splitFirst[i].indexOf("(")+1,splitFirst[i].indexOf(")")).split(",");
+            logic=splitFirst[i].substring(splitFirst[i].indexOf("{")+1).split(",");
+
+            ruleAtt.put(rule,attrs);
+            ruleLogic.put(rule,logic);
+        }
+        loadedLogicRules.append("\n LINIAaaaaaa ");
+
+        for(String key: ruleAtt.keySet()){
+            loadedLogicRules.append("\n rule: "+key+"\n attr:"+getCos(ruleAtt.get(key)));
+        }
+        for(String key: ruleLogic.keySet()){
+            loadedLogicRules.append("\n rule: "+key+"\n Logic:"+getCos(ruleLogic.get(key)));
+        }
     }
 
     private void generateSpecLog(){
@@ -233,6 +267,13 @@ public class MainWindow extends JFrame {
             generatedOutput.append("\n"+s);
         }
 
+    }
+    private String getCos(String [] table){
+        String t="";
+        for(int i=0;i<table.length;i++){
+            t=t.concat(","+table[i]);
+        }
+        return  t;
     }
 
 }
