@@ -1,0 +1,4 @@
+zapytania:
+Czy mamy sprawdzaæ, czy u¿ytkownik poda³ syntaktycznie(? czy to dobre s³owo) poprawne zdanie WL do przetworzenia.
+Np czy nie poda³ Seq(a,b,c,d,a,d) albo WSCAFASD(asdasdasdasda).
+

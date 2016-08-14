@@ -10,7 +10,7 @@ Seq(Seq(a,Seq(a,b)),c)
 Seq(a,Seq(a,b)),c
 /\ do Seq bez problemu się dostanę, ale jak zrobić bardziej uniwersalne dostawanie się do "c",
 po split(,) nie mogę , ale ale !!!!<( |)><( |)>!!!!! to co jest pomiędzy ( a ) można zmienić na "puste",
-wtedy nie przeszkadzałby mi , w split. Dzięki temu mam c nawet gdy Concur(a,Seq(a,b),Seq(a,b),d), bo
+wtedy nie przeszkadzałby mi , w split po "," . Dzięki temu mam c nawet gdy Concur(a,Seq(a,b),Seq(a,b),d), bo
 Concur(a,Seq(a,b),Seq(a,b),d)==magia==> Concur(a,Seq(),Seq(),d)==split==> temp[0]=a,temp[1]=Seq(),
 temp[2]=Seq(),temp[3]=d
 
@@ -29,3 +29,10 @@ w sensie nie będzie już pojawiać się coś takiego: Seq(Seq(a,b),c);
 
 
 
+Seq(Seq(a,Seq(a,b)),c),
+1. Pobierz piewszy "token" od 0 do (
+2. Dopóki !end of line rób:
+	2.1 pobierz argument	
+	2.2 jeśli argument to funkcja, to podstaw za nią, argumenty tej funkcji i wstaw tak powstałą postać formuły głównej do arraylist doPrzemielenia
+3. Jeśli któraś reguła w doPrzemiel nie ma samych atomicznych argumentów to przemiel jej formuły
+4. Na podstawie przygotowanych funkcji

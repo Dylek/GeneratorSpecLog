@@ -48,7 +48,7 @@ public class MainWindow extends JFrame {
 
     public MainWindow(){
 
-         ruleAtt=new Hashtable<>();
+        ruleAtt=new Hashtable<>();
         ruleLogic=new Hashtable<>();
 
         initLookAndFeel();
@@ -128,7 +128,7 @@ public class MainWindow extends JFrame {
                 int returnVal=fileChooser.showOpenDialog(mainFrame);
 
                 if(returnVal==JFileChooser.APPROVE_OPTION) {
-
+                    resetLoadedData();
                     String fileName="";
                     File file=null;
                     try {
@@ -226,6 +226,7 @@ public class MainWindow extends JFrame {
             e.printStackTrace();
         }
         //wyświetlanie wczytanych reguł
+
         for(String s:loadedFileLines){
             loadedLogicRules.append("\n  "+s);
         }
@@ -264,8 +265,22 @@ public class MainWindow extends JFrame {
 
     private void generateSpecLog(){
         System.out.println("Generuje");
-
+        int formulaState=0;
         generatedOutput.setText("Dla formuly: "+formulaField.getText()+"\nWygenerowano logike:\n");
+        formulaState=checkFormulaField(formulaField.getText());
+        switch(formulaState){
+            case 0: generatedOutput.append("\nFormuła w porządku. Rozpoczynam generowanie.");break;
+            case -1:generatedOutput.append("\nBłąd w formule!\n Jedna z podanych formuł nie istnieje.");break;
+            case -2:generatedOutput.append("\nBłąd w formule! \nJedna z podanych formuł ma błędną ilość argumentów.");break;
+            case -3:generatedOutput.append("\nBłąd w formule!\n Formuła zawiera nie dozwolone znaki.");break;
+            case -4:generatedOutput.append("\nBłąd w formule!\n Formuła zawira błędne nawiasowanie.");break;
+            default:generatedOutput.append("\nNie określony błąd. Coś poszło nie tak.");break;
+        }
+
+        //działamy tylko jeśli formuła jest OK
+        if(formulaState==0){
+
+        }
         /**
          * TODO tutaj trzeba zaimplementować trzon algorytmu
          */
@@ -274,6 +289,19 @@ public class MainWindow extends JFrame {
         }
 
     }
+
+    private int checkFormulaField(String text) {
+        int result=0;
+        /*
+         * TODO
+          * 1. Kod na sprawdzanie poprawenego nawiasowania
+          * 2. Kod na s
+         */
+
+
+        return result;
+    }
+
     private String getCos(String [] table){
         String t="";
         for(int i=0;i<table.length;i++){
@@ -282,4 +310,8 @@ public class MainWindow extends JFrame {
         return  t;
     }
 
+    private void resetLoadedData(){
+        loadedFileLines.clear();
+        loadedLogicRules.removeAll();
+    }
 }
