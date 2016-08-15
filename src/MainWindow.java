@@ -1,3 +1,5 @@
+import com.sun.deploy.security.ruleset.Rule;
+
 import javax.swing.*;
 import javax.swing.plaf.metal.DefaultMetalTheme;
 import javax.swing.plaf.metal.MetalLookAndFeel;
@@ -284,21 +286,22 @@ public class MainWindow extends JFrame {
             default:generatedOutput.append("\nNie określony błąd. Coś poszło nie tak.");break;
         }
 
-        String wL[];
-        String L="";
 
+        String L="";
+        //kolejnośc wystąpienia,(nazwa zasady, argumenty z WL)
+        Hashtable<Integer,RuleObject> ruleSeq=parseWL(formulaField.getText());//TODO parseWL
         //działamy tylko jeśli formuła jest OK
         if(formulaState==0){
             L="";
-            for(int i=0;i<wL.length;i++){
-                String L2=getL2();//TODO poprawne robienie L2
-                String wL_arg[];
+            for(Integer i :ruleSeq.keySet()){
+                String[] wL_arg=ruleSeq.get(i).getRuleArgs();
+                String L2=getL2(ruleSeq.get(i).getRuleName(),wL_arg);//TODO sprawdź poprawnośc działania
+
                 for (int j=0;j<wL_arg.length;j++){
                     if(!isAtomic(wL_arg[i])){
-                        String agg=getF_en(pat)+"V"+getF_ex(pat);
-
+                        String agg=getF_en(wL_arg[i])+"V"+getF_ex(wL_arg[i]);//TODO getF_en i getF_ex
+                        L2=L2.replaceAll(wL_arg[i],agg);
                     }
-
                 }
                 //TODO znaczek sumy dodaj
                 L=L+"Znaczek sumy"+L2;
@@ -307,6 +310,22 @@ public class MainWindow extends JFrame {
         }
 
         return L;
+    }
+
+//TODO jeśli uda nam sie podzielić WL na zasada-wpisane argumenty to jesteśmy już w domu
+    private Hashtable<Integer,RuleObject> parseWL(String wl) {
+        Hashtable<Integer,RuleObject> temp=new Hashtable<>();
+        int k=0;
+        for(int i=0;i<wl.length();i++){
+            RuleObject obj=new RuleObject();
+            obj.setRuleName(wl.substring(0,wl.indexOf("(")));
+            String args=wl.substring(wl.indexOf("(")+1);
+            obj.setRuleArgs();
+
+        }
+
+
+        return  temp;
     }
 
     /**
@@ -359,9 +378,13 @@ public class MainWindow extends JFrame {
         if(isAtomic(pattern)){
 
         }else if(!isAtomic(pattern)){
-            getF_en();
+            getF_en(pattern);
         }
         return "dupa";
+    }
+    private Object getF_ex(String s) {
+
+        return "dupa2";
     }
 
     /**
@@ -398,7 +421,11 @@ public class MainWindow extends JFrame {
     }
 
     // z Seq(a,Seq(b,c)) ma mi zwrócić [a,Seq(b,c)]
+    //z Concue(a,Seq(b,c),d,Seq(f,g)) zwraca [a,Seq(b,c),d,Seq(f,g)]
     private String[] getArgs(String data){
 
+
+
+        return "fupa";
     }
 }

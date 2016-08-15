@@ -3,6 +3,6 @@
  */
 public class GeneratorSpec {
     public static void main(String[] args){
-        MainWindow window=new MainWindow();
+        //MainWindow window=new MainWindow();
     }
 }
