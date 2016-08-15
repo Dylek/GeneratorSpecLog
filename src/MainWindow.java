@@ -32,6 +32,7 @@ public class MainWindow extends JFrame {
     private JTextArea loadedLogicRules;
     private JTextArea formulaField;
     private ArrayList <String> loadedFileLines;
+    private String text;
 
     private JFileChooser fileChooser;
     private JMenuBar menuBar;
@@ -43,6 +44,10 @@ public class MainWindow extends JFrame {
     private  JScrollPane formulaPane;
 
 //WAŻNE
+    /**
+     * ruleAtt <Zasada,Atrybuty> np. <Seq,[f1,f2]>
+     * ruleLogic <Zasada,Lokiga > np. <Seq,[f1=>f2,f1^f2]>
+     */
     Hashtable<String,String[]> ruleAtt;
     Hashtable<String,String[]> ruleLogic;
 
@@ -177,6 +182,7 @@ public class MainWindow extends JFrame {
                     //while(!generatedOutput.getText().isEmpty()) {
                         // Writes the content to the file
                         try {
+                            //TODO zmienić z getTExt na tylko L
                             writer.write(generatedOutput.getText().toString());
                         } catch (IOException e1) {
                             e1.printStackTrace();
@@ -231,7 +237,7 @@ public class MainWindow extends JFrame {
             loadedLogicRules.append("\n  "+s);
         }
         System.out.println("Wczytano");
-        loadedLogicRules.append("\n LINIAaaaaaa ");
+        loadedLogicRules.append("\n _______________________________________________________________");
 
         //Kod odpowiedzialkny za wyłuskiwanie zasad, atrubutów i logiki
         String[] splitFirst=fileText.split("}");
@@ -248,8 +254,9 @@ public class MainWindow extends JFrame {
             ruleAtt.put(rule,attrs);
             ruleLogic.put(rule,logic);
         }
-        loadedLogicRules.append("\n LINIAaaaaaa ");
 
+        loadedLogicRules.append("\n LINIAaaaaaa ");
+        loadedLogicRules.append(fileText);
 
         /**
          * TODO debug do wurzycenia przed oddaniem,
@@ -257,39 +264,78 @@ public class MainWindow extends JFrame {
          */
         for(String key: ruleAtt.keySet()){
             loadedLogicRules.append("\n rule: "+key+"\n attr:"+getCos(ruleAtt.get(key)));
-        }
-        for(String key: ruleLogic.keySet()){
             loadedLogicRules.append("\n rule: "+key+"\n Logic:"+getCos(ruleLogic.get(key)));
+
         }
+
     }
 
-    private void generateSpecLog(){
+    private String generateSpecLog(){
         System.out.println("Generuje");
         int formulaState=0;
-        generatedOutput.setText("Dla formuly: "+formulaField.getText()+"\nWygenerowano logike:\n");
+
         formulaState=checkFormulaField(formulaField.getText());
         switch(formulaState){
             case 0: generatedOutput.append("\nFormuła w porządku. Rozpoczynam generowanie.");break;
-            case -1:generatedOutput.append("\nBłąd w formule!\n Jedna z podanych formuł nie istnieje.");break;
-            case -2:generatedOutput.append("\nBłąd w formule! \nJedna z podanych formuł ma błędną ilość argumentów.");break;
-            case -3:generatedOutput.append("\nBłąd w formule!\n Formuła zawiera nie dozwolone znaki.");break;
-            case -4:generatedOutput.append("\nBłąd w formule!\n Formuła zawira błędne nawiasowanie.");break;
+            case 1:generatedOutput.append("\nBłąd w formule!\n Jedna z podanych formuł nie istnieje.");break;
+            case 2:generatedOutput.append("\nBłąd w formule!\n Jedna z podanych formuł ma błędną ilość argumentów.");break;
+            case 3:generatedOutput.append("\nBłąd w formule!\n Formuła zawiera nie dozwolone znaki.");break;
+            case 4:generatedOutput.append("\nBłąd w formule!\n Formuła zawira błędne nawiasowanie.");break;
             default:generatedOutput.append("\nNie określony błąd. Coś poszło nie tak.");break;
         }
 
+        String wL[];
+        String L="";
+
         //działamy tylko jeśli formuła jest OK
         if(formulaState==0){
+            L="";
+            for(int i=0;i<wL.length;i++){
+                String L2=getL2();//TODO poprawne robienie L2
+                String wL_arg[];
+                for (int j=0;j<wL_arg.length;j++){
+                    if(!isAtomic(wL_arg[i])){
+                        String agg=getF_en(pat)+"V"+getF_ex(pat);
 
-        }
-        /**
-         * TODO tutaj trzeba zaimplementować trzon algorytmu
-         */
-        for(String s:loadedFileLines){
-            generatedOutput.append("\n"+s);
+                    }
+
+                }
+                //TODO znaczek sumy dodaj
+                L=L+"Znaczek sumy"+L2;
+            }
+            generatedOutput.setText("Dla formuly: "+formulaField.getText()+"\nWygenerowano logike:\n"+L);
         }
 
+        return L;
     }
 
+    /**
+     *
+     * @param s
+     * @return
+     * false- dany string nie jest atomiczny
+     * true- dany string jest atomiczny(czyt. nie jest zagnieżdzoną formułą)
+     */
+    private boolean isAtomic(String s) {
+        for(String pattern: ruleAtt.keySet()){
+            if(s.contains(pattern)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     *
+     * @param text
+     * @return
+     * 0- ok
+     * 1-Jedna z podanych formuł nie istnieje
+     * 2-Jedna z podanych formuł ma błędną ilość argumentów.
+     * 3-Formuła zawiera nie dozwolone znaki.
+     * 4-Formuła zawira błędne nawiasowanie.
+     *
+     */
     private int checkFormulaField(String text) {
         int result=0;
         /*
@@ -309,9 +355,50 @@ public class MainWindow extends JFrame {
         }
         return  t;
     }
+    private String getF_en(String pattern){
+        if(isAtomic(pattern)){
 
+        }else if(!isAtomic(pattern)){
+            getF_en();
+        }
+        return "dupa";
+    }
+
+    /**
+     * L2 := WL[i]0P n fWL[i]0P:fen;WL[i]0P:fexg;
+     * Dla danej zasady rule, zwracamy jej logikę z podstawionymi wartościami atrybutów
+     * @param rule
+     * @param args
+     * @return
+     */
+    private String getL2(String rule,String[] args){
+        String temp="";
+        //od 2, ponieważ pomijamy f.en i f.ex
+        for(int i=2;i<ruleLogic.get(rule).length;i++){
+            //UOL=Unit of logic
+            String UOL=ruleLogic.get(rule)[i];//pobieram jedną zasadę
+
+            //dla każdego atrybutu podmieniamy odpowiednie parametry danej reguły
+            for(int j=0;j<ruleAtt.get(rule).length;j++){
+                UOL=UOL.replaceAll(ruleAtt.get(rule)[j],args[j]);
+            }
+
+            if(i==2){
+                temp.concat(UOL);
+            }else if(i>2){
+                temp.concat(","+UOL);
+            }
+        }
+
+        return temp;
+    }
     private void resetLoadedData(){
         loadedFileLines.clear();
         loadedLogicRules.removeAll();
+    }
+
+    // z Seq(a,Seq(b,c)) ma mi zwrócić [a,Seq(b,c)]
+    private String[] getArgs(String data){
+
     }
 }
