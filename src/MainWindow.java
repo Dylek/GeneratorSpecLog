@@ -289,18 +289,18 @@ public class MainWindow extends JFrame {
 
         String L="";
         //kolejnośc wystąpienia,(nazwa zasady, argumenty z WL)
-        Hashtable<Integer,RuleObject> ruleSeq=parseWL(formulaField.getText());//TODO parseWL
+       ArrayList<RuleObject> ruleSeq=parseWL(formulaField.getText());//TODO parseWL
         //działamy tylko jeśli formuła jest OK
         if(formulaState==0){
             L="";
-            for(Integer i :ruleSeq.keySet()){
-                String[] wL_arg=ruleSeq.get(i).getRuleArgs();
+            for(int i=0;i<ruleSeq.size();i++){
+               ArrayList<String> wL_arg=ruleSeq.get(i).getRuleArgs();
                 String L2=getL2(ruleSeq.get(i).getRuleName(),wL_arg);//TODO sprawdź poprawnośc działania
 
-                for (int j=0;j<wL_arg.length;j++){
-                    if(!isAtomic(wL_arg[i])){
-                        String agg=getF_en(wL_arg[i])+"V"+getF_ex(wL_arg[i]);//TODO getF_en i getF_ex
-                        L2=L2.replaceAll(wL_arg[i],agg);
+                for (int j=0;j<wL_arg.size();j++){
+                    if(!isAtomic(wL_arg.get(i))){
+                        String agg=getF_en(wL_arg.get(i))+"V"+getF_ex(wL_arg.get(i));//TODO getF_en i getF_ex
+                        L2=L2.replaceAll(wL_arg.get(i),agg);
                     }
                 }
                 //TODO znaczek sumy dodaj
@@ -313,20 +313,28 @@ public class MainWindow extends JFrame {
     }
 
 //TODO jeśli uda nam sie podzielić WL na zasada-wpisane argumenty to jesteśmy już w domu
-    private Hashtable<Integer,RuleObject> parseWL(String wl) {
-        Hashtable<Integer,RuleObject> temp=new Hashtable<>();
-        int k=0;
-        for(int i=0;i<wl.length();i++){
-            RuleObject obj=new RuleObject();
-            obj.setRuleName(wl.substring(0,wl.indexOf("(")));
-            String args=wl.substring(wl.indexOf("(")+1);
-            obj.setRuleArgs();
+private ArrayList<RuleObject> parseWL(String wl) {
+    ArrayList<RuleObject> temp=new ArrayList<RuleObject>();
 
+    RuleObject obj=new RuleObject();
+    obj.setRuleName(wl.substring(0,wl.indexOf("(")));
+    obj.setRuleArgs(getArgs(wl.substring(wl.indexOf("(")+1,wl.lastIndexOf(")")+1)));
+    temp.add(obj);
+
+    ArrayList<String> temp2=new ArrayList<String>();
+    for(int j=0;j<temp2.size();j++){
+        if(!isAtomic(temp2.get(j))){
+            RuleObject obj2=new RuleObject();
+            obj2.setRuleName(wl.substring(0,wl.indexOf("(")));
+            obj2.setRuleArgs(getArgs(wl.substring(wl.indexOf("(")+1,wl.lastIndexOf(")")+1)));
+            temp.add(obj2);
+            for(int l=0;l<obj2.getRuleArgs().size();l++){
+                temp2.add(j+l+1,obj2.getRuleArgs().get(l));
+            }
         }
-
-
-        return  temp;
     }
+    return  temp;
+}
 
     /**
      *
@@ -374,6 +382,7 @@ public class MainWindow extends JFrame {
         }
         return  t;
     }
+    //TODO
     private String getF_en(String pattern){
         if(isAtomic(pattern)){
 
@@ -382,6 +391,7 @@ public class MainWindow extends JFrame {
         }
         return "dupa";
     }
+    //TODO
     private Object getF_ex(String s) {
 
         return "dupa2";
@@ -394,7 +404,7 @@ public class MainWindow extends JFrame {
      * @param args
      * @return
      */
-    private String getL2(String rule,String[] args){
+    private String getL2(String rule,ArrayList<String> args){
         String temp="";
         //od 2, ponieważ pomijamy f.en i f.ex
         for(int i=2;i<ruleLogic.get(rule).length;i++){
@@ -403,7 +413,7 @@ public class MainWindow extends JFrame {
 
             //dla każdego atrybutu podmieniamy odpowiednie parametry danej reguły
             for(int j=0;j<ruleAtt.get(rule).length;j++){
-                UOL=UOL.replaceAll(ruleAtt.get(rule)[j],args[j]);
+                UOL=UOL.replaceAll(ruleAtt.get(rule)[j],args.get(j));
             }
 
             if(i==2){
@@ -422,10 +432,34 @@ public class MainWindow extends JFrame {
 
     // z Seq(a,Seq(b,c)) ma mi zwrócić [a,Seq(b,c)]
     //z Concue(a,Seq(b,c),d,Seq(f,g)) zwraca [a,Seq(b,c),d,Seq(f,g)]
-    private String[] getArgs(String data){
+    private  ArrayList<String> getArgs(String data){
+        ArrayList<String> args=new ArrayList<String>();
+        String temp="";
+        data=data+",";
+        int inside=0;
+        for(int i=0;i<data.length();i++){
+            //zakładam, że jest poprawne nawiasowanie
+            if(inside==0 && data.substring(i,i+1).equals(",")){
+                if(temp.substring(0,1).equals(",")){
+                    temp=temp.substring(1);
+                }
+                args.add(temp);
+                System.out.println("add:"+temp);
+                temp="";
 
+            }
+            else if(data.substring(i,i+1).equals("(")){
+                System.out.println("inside++");
+                inside++;
+            }else if(data.substring(i,i+1).equals(")")){
+                System.out.println("inside--");
+                inside--;
+            }
 
+            temp=temp+data.substring(i,i+1);
 
-        return "fupa";
+        }
+
+        return args;
     }
 }

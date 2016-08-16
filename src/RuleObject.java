@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Created by Cavi Cardan on 15.08.2016.
  */
@@ -12,13 +14,13 @@ public class RuleObject {
         this.ruleName = ruleName;
     }
 
-    private String[] ruleArgs;
+    private ArrayList<String> ruleArgs;
 
-    public String[] getRuleArgs() {
+    public ArrayList<String> getRuleArgs() {
         return ruleArgs;
     }
 
-    public void setRuleArgs(String[] ruleArgs) {
+    public void setRuleArgs(ArrayList<String> ruleArgs) {
         this.ruleArgs = ruleArgs;
     }
 }
