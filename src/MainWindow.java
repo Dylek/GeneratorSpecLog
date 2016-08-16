@@ -257,18 +257,6 @@ public class MainWindow extends JFrame {
             ruleLogic.put(rule,logic);
         }
 
-        loadedLogicRules.append("\n LINIAaaaaaa ");
-        loadedLogicRules.append(fileText);
-
-        /**
-         * TODO debug do wurzycenia przed oddaniem,
-         * sprawdzam czy dobrze wyłuskuje poszcególne rzeczy
-         */
-        for(String key: ruleAtt.keySet()){
-            loadedLogicRules.append("\n rule: "+key+"\n attr:"+getCos(ruleAtt.get(key)));
-            loadedLogicRules.append("\n rule: "+key+"\n Logic:"+getCos(ruleLogic.get(key)));
-
-        }
 
     }
 
@@ -313,6 +301,7 @@ public class MainWindow extends JFrame {
     }
 
 //TODO jeśli uda nam sie podzielić WL na zasada-wpisane argumenty to jesteśmy już w domu
+    //TODO sprawdzić działanie
 private ArrayList<RuleObject> parseWL(String wl) {
     ArrayList<RuleObject> temp=new ArrayList<RuleObject>();
 
@@ -353,7 +342,7 @@ private ArrayList<RuleObject> parseWL(String wl) {
     }
 
     /**
-     *
+     *TODO
      * @param text
      * @return
      * 0- ok
@@ -382,7 +371,7 @@ private ArrayList<RuleObject> parseWL(String wl) {
         }
         return  t;
     }
-    //TODO
+    //TODO getF_en
     private String getF_en(String pattern){
         if(isAtomic(pattern)){
 
@@ -391,7 +380,7 @@ private ArrayList<RuleObject> parseWL(String wl) {
         }
         return "dupa";
     }
-    //TODO
+    //TODO getF_ex
     private Object getF_ex(String s) {
 
         return "dupa2";
@@ -404,6 +393,7 @@ private ArrayList<RuleObject> parseWL(String wl) {
      * @param args
      * @return
      */
+    //TODO sprawdzić dzioałanie
     private String getL2(String rule,ArrayList<String> args){
         String temp="";
         //od 2, ponieważ pomijamy f.en i f.ex
@@ -430,8 +420,7 @@ private ArrayList<RuleObject> parseWL(String wl) {
         loadedLogicRules.removeAll();
     }
 
-    // z Seq(a,Seq(b,c)) ma mi zwrócić [a,Seq(b,c)]
-    //z Concue(a,Seq(b,c),d,Seq(f,g)) zwraca [a,Seq(b,c),d,Seq(f,g)]
+    //spradzone
     private  ArrayList<String> getArgs(String data){
         ArrayList<String> args=new ArrayList<String>();
         String temp="";
