@@ -277,17 +277,17 @@ public class MainWindow extends JFrame {
 
         String L="";
         //kolejnośc wystąpienia,(nazwa zasady, argumenty z WL)
-       ArrayList<RuleObject> ruleSeq=parseWL(formulaField.getText());//TODO parseWL
+       ArrayList<RuleObject> ruleSeq=parseWL(formulaField.getText());
         //działamy tylko jeśli formuła jest OK
         if(formulaState==0){
             L="";
             for(int i=0;i<ruleSeq.size();i++){
                ArrayList<String> wL_arg=ruleSeq.get(i).getRuleArgs();
-                String L2=getL2(ruleSeq.get(i).getRuleName(),wL_arg);//TODO sprawdź poprawnośc działania
+                String L2=getL2(ruleSeq.get(i).getRuleName(),wL_arg);
 
                 for (int j=0;j<wL_arg.size();j++){
                     if(!isAtomic(wL_arg.get(i))){
-                        String agg=getF_en(wL_arg.get(i))+"V"+getF_ex(wL_arg.get(i));//TODO getF_en i getF_ex
+                        String agg=getF_en(wL_arg.get(i))+"V"+getF_ex(wL_arg.get(i));/
                         L2=L2.replaceAll(wL_arg.get(i),agg);
                     }
                 }
@@ -300,7 +300,7 @@ public class MainWindow extends JFrame {
         return L;
     }
 
-//TODO jeśli uda nam sie podzielić WL na zasada-wpisane argumenty to jesteśmy już w domu
+//TODO jeśli uda nam sie podzielić WL na zasada-wpisane argumenty to jesteśmy już w domu, zmiana na arraylist. będą pokolei
     //TODO sprawdzić działanie
 private ArrayList<RuleObject> parseWL(String wl) {
     ArrayList<RuleObject> temp=new ArrayList<RuleObject>();
@@ -342,7 +342,7 @@ private ArrayList<RuleObject> parseWL(String wl) {
     }
 
     /**
-     *TODO
+     *TODO checkFormulaField
      * @param text
      * @return
      * 0- ok
@@ -355,7 +355,7 @@ private ArrayList<RuleObject> parseWL(String wl) {
     private int checkFormulaField(String text) {
         int result=0;
         /*
-         * TODO
+         * 
           * 1. Kod na sprawdzanie poprawenego nawiasowania
           * 2. Kod na s
          */
@@ -371,19 +371,55 @@ private ArrayList<RuleObject> parseWL(String wl) {
         }
         return  t;
     }
-    //TODO getF_en
-    private String getF_en(String pattern){
-        if(isAtomic(pattern)){
+    //TODO getF_en do sprawdzenia
+    //tu musi zostać podane Zasada-argumernty
+    private String getF_en(String nonAtomic){
+        RuleObject obj=new RuleObject();
+        obj.setRuleName(nonAtomic.substring(0,nonAtomic.indexOf("(")));
+        obj.setRuleArgs(getArgs(nonAtomic.substring(nonAtomic.indexOf("(")+1,nonAtomic.lastIndexOf(")")+1)));
+        //f_en zawsze jest pierwsza formula
+        String f_en=ruleLogic.get(obj.getRuleName())[0];
+       // ArrayList<Integer> whichArgTo=new ArrayList<Integer>();
+        //zamiana każdego f1 f2 na odpowiednie argumenty
+        for(int i=0;i<ruleAtt.size()-1;i++){
+            //dodaje do kolejki argumenty, któe okazały się nie atomiczne, w sensie
+            /*
+            Seq(Seq(a,b),c)^e -> f1 ==Seq(a,b) ->Seq(a,b)^e->f1==a ->  Seq(Seq(a,b),c)^e==a
+            a skoro przy podstawianiu wiem, co jest nie atomiczne, to mogę to bez problemu  przeemielić w kolejnej pętli
+             */
+            // zawiera w formule argumennt nieatomiczny który zaraz zostanie podstawiony
+           /* if(f_en.contains(ruleAtt.get(obj.getRuleName())[i]) && isAtomic(obj.getRuleArgs().get(i))){
+                whichArgTo.add(i);
 
-        }else if(!isAtomic(pattern)){
-            getF_en(pattern);
+            }
+            f_en=f_en.replace(ruleAtt.get(obj.getRuleName())[i],obj.getRuleArgs().get(i));*/
+           //skapłem, się że po co czekać, zamiast podstawiać Sew(a,b) skoro od razu mogę podstawiać Seq(a,b)^e
+            if(f_en.contains(ruleAtt.get(obj.getRuleName())[i]) && !isAtomic(obj.getRuleArgs().get(i))){
+                //skoro czegoś nie ma to nie zrobi tego replaca
+                f_en=f_en.replace(ruleAtt.get(obj.getRuleName())[i],getF_en( obj.getRuleArgs().get(i)));
+            }else{
+                f_en=f_en.replace(ruleAtt.get(obj.getRuleName())[i],obj.getRuleArgs().get(i));
+            }
         }
-        return "dupa";
+        return f_en;
     }
-    //TODO getF_ex
-    private Object getF_ex(String s) {
-
-        return "dupa2";
+    //TODO getF_ex do sprawdzenia
+    private Object getF_ex(String nonAtomic) {
+        RuleObject obj=new RuleObject();
+        obj.setRuleName(nonAtomic.substring(0,nonAtomic.indexOf("(")));
+        obj.setRuleArgs(getArgs(nonAtomic.substring(nonAtomic.indexOf("(")+1,nonAtomic.lastIndexOf(")")+1)));
+        //f_en zawsze jest pierwsza formula
+        String f_ex=ruleLogic.get(obj.getRuleName())[1];
+        //zamiana każdego f1 f2 na odpowiednie argumenty
+        for(int i=0;i<ruleAtt.size()-1;i++){
+            if(f_ex.contains(ruleAtt.get(obj.getRuleName())[i]) && !isAtomic(obj.getRuleArgs().get(i))){
+                //skoro czegoś nie ma to nie zrobi tego replaca
+                f_ex=f_ex.replace(ruleAtt.get(obj.getRuleName())[i],getF_en( obj.getRuleArgs().get(i)));
+            }else{
+                f_ex=f_ex.replace(ruleAtt.get(obj.getRuleName())[i],obj.getRuleArgs().get(i));
+            }
+        }
+        return f_ex;
     }
 
     /**
@@ -433,15 +469,15 @@ private ArrayList<RuleObject> parseWL(String wl) {
                     temp=temp.substring(1);
                 }
                 args.add(temp);
-                System.out.println("add:"+temp);
+                //System.out.println("add:"+temp);
                 temp="";
 
             }
             else if(data.substring(i,i+1).equals("(")){
-                System.out.println("inside++");
+                //System.out.println("inside++");
                 inside++;
             }else if(data.substring(i,i+1).equals(")")){
-                System.out.println("inside--");
+                //System.out.println("inside--");
                 inside--;
             }
 
