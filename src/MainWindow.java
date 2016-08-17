@@ -303,13 +303,24 @@ public class MainWindow extends JFrame {
 //TODO jeśli uda nam sie podzielić WL na zasada-wpisane argumenty to jesteśmy już w domu, zmiana na arraylist. będą pokolei
     //TODO sprawdzić działanie
 private ArrayList<RuleObject> parseWL(String wl) {
-    ArrayList<RuleObject> temp=new ArrayList<RuleObject>();
-
+    ArrayList<RuleObject> parrsed=new ArrayList<RuleObject>();
+//TODO może rekurencyjnie zygnąć
+    //pierwszy jest oczywisty
     RuleObject obj=new RuleObject();
     obj.setRuleName(wl.substring(0,wl.indexOf("(")));
     obj.setRuleArgs(getArgs(wl.substring(wl.indexOf("(")+1,wl.lastIndexOf(")")+1)));
-    temp.add(obj);
-
+    parrsed.add(obj);
+    for(int o=0;o<obj.getRuleArgs().size();o++){
+        if(!isAtomic(obj.getRuleArgs().get(o))){
+            //jeśli wykryje kolejny patter,
+            //zrobi z niego parseWL :D
+            ArrayList<RuleObject> referenced=parseWL(obj.getRuleArgs().get(o));
+            for(RuleObject rek: referenced){
+                parrsed.add(rek);
+            }
+        }
+    }
+    /*
     ArrayList<String> temp2=new ArrayList<String>();
     for(int j=0;j<temp2.size();j++){
         if(!isAtomic(temp2.get(j))){
@@ -321,8 +332,8 @@ private ArrayList<RuleObject> parseWL(String wl) {
                 temp2.add(j+l+1,obj2.getRuleArgs().get(l));
             }
         }
-    }
-    return  temp;
+    }*/
+    return  parrsed;
 }
 
     /**

@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 /**
  * Created by Cavi Cardan on 15.08.2016.
+ * Jest to klasa reprezentująca wzorce podane przez użytkownika w polu FORMULa, WL
+ *
  */
 public class RuleObject {
     private String ruleName;
