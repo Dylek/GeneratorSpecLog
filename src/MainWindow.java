@@ -54,7 +54,7 @@ public class MainWindow extends JFrame {
     Hashtable<String,String[]> ruleLogic;
 
     public MainWindow(){
-
+//TODO może jakieś okienko legendy, ~to negacja. [] to ten kwadrat z logiki temporalnej itp., tak u dołu strony
         ruleAtt=new Hashtable<>();
         ruleLogic=new Hashtable<>();
 
@@ -287,12 +287,12 @@ public class MainWindow extends JFrame {
 
                 for (int j=0;j<wL_arg.size();j++){
                     if(!isAtomic(wL_arg.get(i))){
-                        String agg=getF_en(wL_arg.get(i))+"V"+getF_ex(wL_arg.get(i));/
+                        String agg=getF_en(wL_arg.get(i))+"V"+getF_ex(wL_arg.get(i));
                         L2=L2.replaceAll(wL_arg.get(i),agg);
                     }
                 }
-                //TODO znaczek sumy dodaj
-                L=L+"Znaczek sumy"+L2;
+
+                L=L+" U "+L2;//TODO znaczkiem sumy jest U
             }
             generatedOutput.setText("Dla formuly: "+formulaField.getText()+"\nWygenerowano logike:\n"+L);
         }
@@ -355,7 +355,7 @@ private ArrayList<RuleObject> parseWL(String wl) {
     private int checkFormulaField(String text) {
         int result=0;
         /*
-         * 
+         *
           * 1. Kod na sprawdzanie poprawenego nawiasowania
           * 2. Kod na s
          */
