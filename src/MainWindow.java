@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Dylek on 2016-05-27.
@@ -184,7 +186,6 @@ public class MainWindow extends JFrame {
                     //while(!generatedOutput.getText().isEmpty()) {
                         // Writes the content to the file
                         try {
-                            //TODO zmienić z getTExt na tylko L
                             writer.write(generatedOutput.getText().toString());
                         } catch (IOException e1) {
                             e1.printStackTrace();
@@ -209,6 +210,7 @@ public class MainWindow extends JFrame {
         generateB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                formulaField.setText(formulaField.getText().trim());
                 generateSpecLog();
             }
         });
@@ -264,7 +266,10 @@ public class MainWindow extends JFrame {
         System.out.println("Generuje");
         int formulaState=0;
 
-        formulaState=checkFormulaField(formulaField.getText());
+
+        ArrayList<RuleObject> ruleSeq=parseWL(formulaField.getText());
+
+        formulaState=checkFormulaField(formulaField.getText(),ruleSeq);
         switch(formulaState){
             case 0: generatedOutput.append("\nFormuła w porządku. Rozpoczynam generowanie.");break;
             case 1:generatedOutput.append("\nBłąd w formule!\n Jedna z podanych formuł nie istnieje.");break;
@@ -277,7 +282,6 @@ public class MainWindow extends JFrame {
 
         String L="";
         //kolejnośc wystąpienia,(nazwa zasady, argumenty z WL)
-       ArrayList<RuleObject> ruleSeq=parseWL(formulaField.getText());
         //działamy tylko jeśli formuła jest OK
         if(formulaState==0){
 
@@ -311,11 +315,9 @@ public class MainWindow extends JFrame {
         return L;
     }
 
-//TODO jeśli uda nam sie podzielić WL na zasada-wpisane argumenty to jesteśmy już w domu, zmiana na arraylist. będą pokolei
-    //TODO sprawdzić działanie
+
 private ArrayList<RuleObject> parseWL(String wl) {
     ArrayList<RuleObject> parrsed=new ArrayList<RuleObject>();
-//TODO może rekurencyjnie zygnąć
     //pierwszy jest oczywisty
     RuleObject obj=new RuleObject();
     obj.setRuleName(wl.substring(0,wl.indexOf("(")));
@@ -366,6 +368,7 @@ private ArrayList<RuleObject> parseWL(String wl) {
     /**
      *TODO checkFormulaField
      * @param text
+     * @param ruleSeq
      * @return
      * 0- ok
      * 1-Jedna z podanych formuł nie istnieje
@@ -374,8 +377,25 @@ private ArrayList<RuleObject> parseWL(String wl) {
      * 4-Formuła zawira błędne nawiasowanie.
      *
      */
-    private int checkFormulaField(String text) {
-        int result=0;
+    private int checkFormulaField(String text, ArrayList<RuleObject> ruleSeq) {
+
+        //TODO sprawdzanie nawiasowania
+
+        Pattern pattern=Pattern.compile("[!@#$%^&*|{}/\\`]");
+        Matcher mat=pattern.matcher(text);
+        if(mat.find()){
+            return 3;
+        }
+
+        for(RuleObject obj: ruleSeq){
+            if(!ruleAtt.containsKey(obj.getRuleName())){
+                return 1;
+            }
+            if(obj.getRuleArgs().size()!=ruleAtt.get(obj.getRuleName()).length){
+                return 2;
+            }
+        }
+
         /*
          *
           * 1. Kod na sprawdzanie poprawenego nawiasowania
@@ -383,7 +403,7 @@ private ArrayList<RuleObject> parseWL(String wl) {
          */
 
 
-        return result;
+        return 0;
     }
 
     private String getCos(String [] table){
@@ -393,7 +413,6 @@ private ArrayList<RuleObject> parseWL(String wl) {
         }
         return  t;
     }
-    //TODO getF_en do sprawdzenia
     //tu musi zostać podane Zasada-argumernty
     private String getF_en(String nonAtomic){
         RuleObject obj=new RuleObject();
@@ -406,7 +425,6 @@ private ArrayList<RuleObject> parseWL(String wl) {
 
         for(int i=0;i<ruleAtt.get(obj.getRuleName()).length;i++){
             System.out.println("rule att:"+ruleAtt.get(obj.getRuleName())[i]+"\nobj args:"+obj.getRuleArgs().get(i)+"\ni:"+i);
-            //TODO java.lang.ArrayIndexOutOfBoundsException: 2
             if(f_en.contains(ruleAtt.get(obj.getRuleName())[i]) && !isAtomic(obj.getRuleArgs().get(i))){
                 //skoro czegoś nie ma to nie zrobi tego replaca
                 f_en=f_en.replace(ruleAtt.get(obj.getRuleName())[i],getF_en( obj.getRuleArgs().get(i)));
@@ -417,7 +435,6 @@ private ArrayList<RuleObject> parseWL(String wl) {
         }
         return f_en;
     }
-    //TODO getF_ex do sprawdzenia
     private Object getF_ex(String nonAtomic) {
         RuleObject obj=new RuleObject();
         obj.setRuleName(nonAtomic.substring(0,nonAtomic.indexOf("(")));
@@ -443,7 +460,6 @@ private ArrayList<RuleObject> parseWL(String wl) {
      * @param args
      * @return
      */
-    //TODO sprawdzić dzioałanie
     private String getL2(String rule,ArrayList<String> args){
         String temp="";
         //od 2, ponieważ pomijamy f.en i f.ex
