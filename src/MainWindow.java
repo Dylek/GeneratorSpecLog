@@ -288,12 +288,12 @@ public class MainWindow extends JFrame {
                 //było wszędzie i
                 for (int j=0;j<wL_arg.size();j++){
                     if(!isAtomic(wL_arg.get(j))){
-                        String agg=getF_en(wL_arg.get(j))+"V"+getF_ex(wL_arg.get(j));
+                        String agg=getF_en(wL_arg.get(j))+" V "+getF_ex(wL_arg.get(j));
                         System.out.println("\nagg:"+agg);
                         System.out.println(L2+" - "+wL_arg.get(j)+" - "+agg);
                         System.out.println(L2.replace(wL_arg.get(j),agg));
                         System.out.println(L2.replaceAll(wL_arg.get(j),agg));
-                        L2=L2.replaceAll(wL_arg.get(j),agg);
+                        L2=L2.replace(wL_arg.get(j),agg);
                         System.out.println(L2+" - "+wL_arg.get(j)+" - "+agg);
                     }
                 }
