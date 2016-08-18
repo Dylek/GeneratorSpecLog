@@ -280,7 +280,7 @@ public class MainWindow extends JFrame {
        ArrayList<RuleObject> ruleSeq=parseWL(formulaField.getText());
         //działamy tylko jeśli formuła jest OK
         if(formulaState==0){
-            L="";
+
             for(int i=0;i<ruleSeq.size();i++){
                ArrayList<String> wL_arg=ruleSeq.get(i).getRuleArgs();
                 String L2=getL2(ruleSeq.get(i).getRuleName(),wL_arg);
@@ -291,8 +291,13 @@ public class MainWindow extends JFrame {
                         L2=L2.replaceAll(wL_arg.get(i),agg);
                     }
                 }
+                System.out.println("L:"+L);
+                if(i==0){
+                    L=L2;
+                }else{
+                    L=L+" U "+L2;//TODO znaczkiem sumy jest U
 
-                L=L+" U "+L2;//TODO znaczkiem sumy jest U
+                }
             }
             generatedOutput.setText("Dla formuly: "+formulaField.getText()+"\nWygenerowano logike:\n"+L);
         }
@@ -308,7 +313,7 @@ private ArrayList<RuleObject> parseWL(String wl) {
     //pierwszy jest oczywisty
     RuleObject obj=new RuleObject();
     obj.setRuleName(wl.substring(0,wl.indexOf("(")));
-    obj.setRuleArgs(getArgs(wl.substring(wl.indexOf("(")+1,wl.lastIndexOf(")")+1)));
+    obj.setRuleArgs(getArgs(wl.substring(wl.indexOf("(")+1,wl.lastIndexOf(")"))));
     parrsed.add(obj);
     for(int o=0;o<obj.getRuleArgs().size();o++){
         if(!isAtomic(obj.getRuleArgs().get(o))){
@@ -409,6 +414,7 @@ private ArrayList<RuleObject> parseWL(String wl) {
                 //skoro czegoś nie ma to nie zrobi tego replaca
                 f_en=f_en.replace(ruleAtt.get(obj.getRuleName())[i],getF_en( obj.getRuleArgs().get(i)));
             }else{
+                System.out.println("rule att:"+ruleAtt.get(obj.getRuleName()).length+"\nobj args:"+obj.getRuleArgs().size()+"\ni:"+i);
                 f_en=f_en.replace(ruleAtt.get(obj.getRuleName())[i],obj.getRuleArgs().get(i));
             }
         }
@@ -454,9 +460,9 @@ private ArrayList<RuleObject> parseWL(String wl) {
             }
 
             if(i==2){
-                temp.concat(UOL);
+               temp=temp.concat(UOL);
             }else if(i>2){
-                temp.concat(","+UOL);
+                temp=temp.concat(","+UOL);
             }
         }
 
