@@ -285,10 +285,14 @@ public class MainWindow extends JFrame {
                ArrayList<String> wL_arg=ruleSeq.get(i).getRuleArgs();
                 String L2=getL2(ruleSeq.get(i).getRuleName(),wL_arg);
 
+                //było wszędzie i
                 for (int j=0;j<wL_arg.size();j++){
-                    if(!isAtomic(wL_arg.get(i))){
-                        String agg=getF_en(wL_arg.get(i))+"V"+getF_ex(wL_arg.get(i));
-                        L2=L2.replaceAll(wL_arg.get(i),agg);
+                    if(!isAtomic(wL_arg.get(j))){
+                        String agg=getF_en(wL_arg.get(j))+"V"+getF_ex(wL_arg.get(j));
+                        System.out.println("\nagg:"+agg);
+                        System.out.println(L2+" - "+wL_arg.get(j)+" - "+agg);
+                        L2=L2.replaceAll(wL_arg.get(j),agg);
+                        System.out.println(L2+" - "+wL_arg.get(j)+" - "+agg);
                     }
                 }
                 System.out.println("L:"+L);
@@ -392,7 +396,7 @@ private ArrayList<RuleObject> parseWL(String wl) {
     private String getF_en(String nonAtomic){
         RuleObject obj=new RuleObject();
         obj.setRuleName(nonAtomic.substring(0,nonAtomic.indexOf("(")));
-        obj.setRuleArgs(getArgs(nonAtomic.substring(nonAtomic.indexOf("(")+1,nonAtomic.lastIndexOf(")")+1)));
+        obj.setRuleArgs(getArgs(nonAtomic.substring(nonAtomic.indexOf("(")+1,nonAtomic.lastIndexOf(")"))));
         //f_en zawsze jest pierwsza formula
         String f_en=ruleLogic.get(obj.getRuleName())[0];
        // ArrayList<Integer> whichArgTo=new ArrayList<Integer>();
@@ -424,7 +428,7 @@ private ArrayList<RuleObject> parseWL(String wl) {
     private Object getF_ex(String nonAtomic) {
         RuleObject obj=new RuleObject();
         obj.setRuleName(nonAtomic.substring(0,nonAtomic.indexOf("(")));
-        obj.setRuleArgs(getArgs(nonAtomic.substring(nonAtomic.indexOf("(")+1,nonAtomic.lastIndexOf(")")+1)));
+        obj.setRuleArgs(getArgs(nonAtomic.substring(nonAtomic.indexOf("(")+1,nonAtomic.lastIndexOf(")"))));
         //f_en zawsze jest pierwsza formula
         String f_ex=ruleLogic.get(obj.getRuleName())[1];
         //zamiana każdego f1 f2 na odpowiednie argumenty
