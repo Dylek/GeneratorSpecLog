@@ -291,6 +291,8 @@ public class MainWindow extends JFrame {
                         String agg=getF_en(wL_arg.get(j))+"V"+getF_ex(wL_arg.get(j));
                         System.out.println("\nagg:"+agg);
                         System.out.println(L2+" - "+wL_arg.get(j)+" - "+agg);
+                        System.out.println(L2.replace(wL_arg.get(j),agg));
+                        System.out.println(L2.replaceAll(wL_arg.get(j),agg));
                         L2=L2.replaceAll(wL_arg.get(j),agg);
                         System.out.println(L2+" - "+wL_arg.get(j)+" - "+agg);
                     }
@@ -401,26 +403,17 @@ private ArrayList<RuleObject> parseWL(String wl) {
         String f_en=ruleLogic.get(obj.getRuleName())[0];
        // ArrayList<Integer> whichArgTo=new ArrayList<Integer>();
         //zamiana każdego f1 f2 na odpowiednie argumenty
-        for(int i=0;i<ruleAtt.size()-1;i++){
-            //dodaje do kolejki argumenty, któe okazały się nie atomiczne, w sensie
-            /*
-            Seq(Seq(a,b),c)^e -> f1 ==Seq(a,b) ->Seq(a,b)^e->f1==a ->  Seq(Seq(a,b),c)^e==a
-            a skoro przy podstawianiu wiem, co jest nie atomiczne, to mogę to bez problemu  przeemielić w kolejnej pętli
-             */
-            // zawiera w formule argumennt nieatomiczny który zaraz zostanie podstawiony
-           /* if(f_en.contains(ruleAtt.get(obj.getRuleName())[i]) && isAtomic(obj.getRuleArgs().get(i))){
-                whichArgTo.add(i);
 
-            }
-            f_en=f_en.replace(ruleAtt.get(obj.getRuleName())[i],obj.getRuleArgs().get(i));*/
-           //skapłem, się że po co czekać, zamiast podstawiać Sew(a,b) skoro od razu mogę podstawiać Seq(a,b)^e
+        for(int i=0;i<ruleAtt.get(obj.getRuleName()).length;i++){
+            System.out.println("rule att:"+ruleAtt.get(obj.getRuleName())[i]+"\nobj args:"+obj.getRuleArgs().get(i)+"\ni:"+i);
+            //TODO java.lang.ArrayIndexOutOfBoundsException: 2
             if(f_en.contains(ruleAtt.get(obj.getRuleName())[i]) && !isAtomic(obj.getRuleArgs().get(i))){
                 //skoro czegoś nie ma to nie zrobi tego replaca
                 f_en=f_en.replace(ruleAtt.get(obj.getRuleName())[i],getF_en( obj.getRuleArgs().get(i)));
             }else{
-                System.out.println("rule att:"+ruleAtt.get(obj.getRuleName()).length+"\nobj args:"+obj.getRuleArgs().size()+"\ni:"+i);
                 f_en=f_en.replace(ruleAtt.get(obj.getRuleName())[i],obj.getRuleArgs().get(i));
             }
+
         }
         return f_en;
     }
@@ -432,7 +425,7 @@ private ArrayList<RuleObject> parseWL(String wl) {
         //f_en zawsze jest pierwsza formula
         String f_ex=ruleLogic.get(obj.getRuleName())[1];
         //zamiana każdego f1 f2 na odpowiednie argumenty
-        for(int i=0;i<ruleAtt.size()-1;i++){
+        for(int i=0;i<ruleAtt.get(obj.getRuleName()).length;i++){
             if(f_ex.contains(ruleAtt.get(obj.getRuleName())[i]) && !isAtomic(obj.getRuleArgs().get(i))){
                 //skoro czegoś nie ma to nie zrobi tego replaca
                 f_ex=f_ex.replace(ruleAtt.get(obj.getRuleName())[i],getF_en( obj.getRuleArgs().get(i)));
