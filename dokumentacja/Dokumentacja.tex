@@ -129,6 +129,75 @@ Paweł \textsc{Ogorzały} \\
 	\item Diagram aktywności składa się tylko z atomicznych aktywności, zidentyfikowanych podczas tworzenia scenariuszy przypadków użycia.
 	\item Generator musi działać automatycznie, usuwa to błąd ludzki.
 	\end{itemize}
+	\section{Specyfikacja logiczna}
+	
+	Automatyzacja generowania specyfikacji logicznej, rozumianej jako zestawu temporalnych formuł logicznych jest kluczowym zagadnieniem. Opiera się ono na kilku założeniach:
+	\begin{itemize}
+	\item Modele oprogramowania są opracowane jako przepływy pracy. Przepływ to postępujące zdarzenie, zadanie, interakcja obejmujące proces pracy.
+	\item Przepływy pracy są opracowany przy użyciu zdefiniowanych wzorców.
+	\item Każdy wzorzec przepływu pracy jest powiązany z zdefiniowanymi wcześniej formułami logicznymi opisującymi własności tego wzorca.
+	\end{itemize} 
+	Elementarny zestaw formuł oznaczony \textit{elem($a_1,...,a_n)$} lub po prostu \textit{elem()}, nad atomowymi formułami $a_1,...,a_n$, gdzie formuła atomowa jest podzielona na trzy podzbiory parami rozłączne:
+	\begin{itemize}
+		\item Pierwsze podzbiór, który zawiera co najmniej jeden element to \textit{argumenty wejściowe}
+		\item Drugi podzbiór, który może być pusty to \textit{zwykłe argumenty}
+		\item Trzeci podzbiór, który zawiera co najmniej jeden element to \textit{argumenty wyjściowe}
+	\end{itemize}
+	jest zbiorem formuł \textit{$f_1,...f_m$} składniowo poprawnych oraz $f_1,...,f_m$ gdzie $m>0$ są temporalnymi formułami logicznymi to
+	\textit{$elem()=\{f_1,...,f_m\}.$}
+	\\
+	\\
+	Wprowadźmy pojęcie formuły wejścia/wyjścia należących do klasycznej logiki. $f_{en}$ i $f_{ex}$ opisują logiczne okoliczności związane z otwarciem i zamknięciem wzorca. $f_{en}$ jest spełnione, gdy pewne początkowe działania są aktywne. Na przykład $a\wedge b$ dla $f_{en}$ oznacza, że gdy wykonanie wzorca jest zainicjowane, obie aktywności \textit{a} i \textit{b} są spełnione. $a\vee b$ dla $f_{ex}$ oznacza, że gdy wykonywanie wzorca ma zostać zakończone wtedy działania \textit{a} oraz \textit{b} są aktywne. Podsumowując $f_{en}$ oraz $f_{ex}$ opisują odpowiednio pierwsze i ostatnie aktywne działania wzorca.
+	\\
+	\\
+	Wzór zestawu formuł oznaczony \textit{$pat(a_1,...,a_n)$} lub uproszczając \textit{$pat()$}, nad formułami atomicznymi $a_1,...,a_n$ jest zbiorem $pat(a_1,...,a_n) \equiv \{f_{en},f_{ex}\} \cup elem(a_1,...,a_n)$ a jej elementy są częściowo uporządkowane w taki sposób, że $f_{en}$ jest zawsze pierwszym elementem, $f_{ex}$ jest zawsze drugim elementem.
+	\\
+	Dla każdego wzorca \textit{pat}, $pat.f_{en}$ i $pat.f_{ex}$ oznacza odpowiednio wejściowe i wyjściowe formuły wzorca.
+	\\
+	\\
+	Wyrażenie logiczne $W_L$ jest strukturą stworzoną na podstawie następujących reguł:
+	\begin{itemize}
+		\item każdy elementarny zestaw $pat(a_i)$, gdzie $i>0$ i każde $a_i$ jest formułą atomiczną, jest wyrażeniem logicznym
+		\item każde $pat(A_i)$, gdzie $i>0$ i każde $A_i$ jest
+		\begin{itemize}
+			\item formułą atomiczną, lub
+			\item wyrażeniem logicznym \textit{pat()}
+		\end{itemize}
+		jest także wyrażeniem logicznym
+	\end{itemize}
+	Wyrażenie logiczne stworzone w powyższy sposób jest dobrze sformatowane. Prostym przykładem wyrażenia logicznego jest $w=Seq(Split(a,b,c),Cond(d,e,f))$ znaczenie wszystkich wzorców jest intuicyjne i nie jest formalnie zdefiniowane. $|w|$ oznacza długość wyrażenia logicznego, które jest liczbą wzorców w wyrażeniu. $w[i]$ oznacza wzór na i-tej pozycji w wyrażeniu logicznym $w$, np. $w[2]=Split$. $|w[i]|$ oznacza liczbę argumentów i-tego wzoru, np. $|w[1]|=2$ a $|w[3]|=3.$
+	\\
+	\\
+	Zestaw \textit{predefiniowanych wzorców $\Pi$} jest to zestaw, który zawiera wszystkie dopuszczalne wzorce przepływu dla procesu rozwoju branego pod uwagę. Zbiór \textit{wzorców własności P}, lub w skrócie \textit{własności P} to zestaw logicznych atrybutów i cechy, które wzorce wymienione w \textit{$\Pi$} posiadają.
+	\textit{"'"} to selektor odpowiedniego obiektu wzorca, np. \textit{$w[i]'P$} oznacza własność \textit{P}, która zawiera formuły dla wzorca na i-tej pozycji w wyrażeniu \textit{w}. \textit{"."} jest selektorem formuły w elementarnym zbiorze, do którego odnosi się wzorzec w wyrażeniu logicznym, np. $w[i]'P.f_{en}$ oznacza formułę $f_{en}$ w elementarnym zbiorze i-tego wzorca w wyrażeniu. $"\uparrow"$ jest selektorem argumentów w wzorcu. $w[i]\uparrow a_j$ oznacza argument $a_j$ i-tego wzorca w wyrażeniu logicznym \textit{w}.
+	\\
+	\\
+	Niech $w^c$ dla wyrażenia logicznego \textit{w} będzie zagregowaną formułą wejściową (wyjściową), gdzie agregowana formuła jest wyliczana na podstawie następujących reguł:
+	\begin{itemize}
+		\item jeśli nie ma wzorca w miejscu jakiejkolwiek formuły atomicznej/argumentu, która składniowo należy do formuły $f_{en}$ (lub $f_{ex}$) \textit{w}, wtedy $w^e$ jest równe $f_{en}$ ($w^x$ jest równe $f_{ex}$).
+		\item jeśli istnieje wzorzec, powiedzmy $t()$ w miejscu jakiegokolwiek atomicznego argumentu powiedzmy \textit{r}, który składniowo należy do formuły $f_{en}$ (lub $f_{ex}$) \textit{w}, wtedy \textit{r} jest zastępowane przez $t^e$ (lub $t^x$) dla każdego przypadku.
+	\end{itemize}
+	\textbf{Algorytm - Generowanie specyfikacji logicznej ($A$)}\\
+	\textbf{Input:} Wyrażenie logiczne $W_L$, zdefiniowane wzorce przepływu(nie puste) $P$\\
+	\textbf{Output:} Specyfikacja logiczna $L$
+	
+	$L:=0$
+	
+	\textbf{for} $i:=1$ \textbf{to} $|W_L|$ \textbf{do}\\
+	\tab $L2:=W_L[i]P'\backslash \{W_L[i]'P.f_{en},W_L[i]'P.f_{ex}\};$\\	
+	\tab \textbf{for} $j:=1$ \textbf{to} $|W_L[i]|$ \textbf{do}\\
+	\tab \tab \textbf{if} $W_L[i] \uparrow a_j$ is non-atomic then \\
+	\tab \tab \tab	$agg:=(W_L[i]'P\uparrow a_J())^e+"V"+(W_L[i]'P\uparrow a_J())^x;$\\
+	\tab \tab \tab	replace in L2 every pattern $W_L[i]'P\uparrow a_j()$ by agg;\\
+	\tab \tab	\textbf{end if}\\
+	\tab  \textbf{end for}\\
+	\tab  L:=L $\cup$ L2 \\
+	\tab[0.5cm]\textbf{end for}
+	\\
+	\\
+	Specyfikacja logiczna \textit{L} składa się ze wszystkich wzorców uzyskanych z wyrażenia logicznego $W_L$ przy stałych właściwościach \textit{P} 
+	\\
+	$L(W_L,P)=\{f:f\in A(W_L,P)\}$
 	\section{Algorytmy}
 	
 	Wzorce przepływu:
@@ -138,7 +207,10 @@ Paweł \textsc{Ogorzały} \\
 	\item Pętla while, loop while
 	\item Rozgałęzienie, branching
 	\end{itemize}
-	DODAĆ OBRAZKI TYCH WZORCÓW W UMLu
+	\begin{figure}[H]
+		\centerline{\includegraphics[scale=1.5]{workflows}}
+		\caption{Wzorce przepływu}
+	\end{figure}%
 		
 	\noindent Wyrażenie logiczne $W_L$ jest strukturą stworzoną według poniższych zasad:\\
 	\begin{itemize}
@@ -257,23 +329,15 @@ Podane wzorce P:
 			   $\Box   \neg ((c \  \vee   d)   \wedge   e)\}$
 			 		   		
 	\end{itemize}
-	
-	\section{Pseudokod}
-	\textbf{Input:} Wyrażenie logiczne $W_L$, zdefiniowane wzorce przepływu(nie puste) $P$\\
-	\textbf{Output:} Specyfikacja logiczna $L$
-	
-	$L:=0$
-	
-	\textbf{for} $i:=1$ \textbf{to} $|W_L|$ \textbf{do}\\
-	\tab $L2:=W_L[i]P'\backslash \{W_L[i]'P.f_{en},W_L[i]'P.f_{ex}\};$\\	
-	\tab \textbf{for} $j:=1$ \textbf{to} $|W_L[i]|$ \textbf{do}\\
-		\tab \tab \textbf{if} $W_L[i] \uparrow a_j$ is non-atomic then \\
-	\tab \tab \tab	$agg:=(W_L[i]'P\uparrow a_J())^e+"V"+(W_L[i]'P\uparrow a_J())^x;$\\
-	\tab \tab \tab	replace in L2 every pattern $W_L[i]'P\uparrow a_j()$ by agg;\\
-	\tab \tab	\textbf{end if}\\
-	\tab  \textbf{end for}\\
-	\tab  L:=L $\cup$ L2 \\
-	\tab[0.5cm]\textbf{end for}
+	\section{Struktura programu}
+	\begin{figure}[H]
+		\centerline{\includegraphics[scale=0.6]{diagram}}
+
+	\end{figure}%
+	\begin{figure}[H]
+		\centerline{\includegraphics[scale=0.6]{diagram2}}
+
+	\end{figure}%
 	\section{Wygląd GUI}
 	
 	\begin{figure}[H]
