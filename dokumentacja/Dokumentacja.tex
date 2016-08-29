@@ -198,49 +198,7 @@ Paweł \textsc{Ogorzały} \\
 	Specyfikacja logiczna \textit{L} składa się ze wszystkich wzorców uzyskanych z wyrażenia logicznego $W_L$ przy stałych właściwościach \textit{P} 
 	\\
 	$L(W_L,P)=\{f:f\in A(W_L,P)\}$
-	\section{Algorytmy}
 	
-	Wzorce przepływu:
-	\begin{itemize}
-	\item Sekwencja, sequence
-	\item Współbieżność, concurrent fork/join
-	\item Pętla while, loop while
-	\item Rozgałęzienie, branching
-	\end{itemize}
-	\begin{figure}[H]
-		\centerline{\includegraphics[scale=1.5]{workflows}}
-		\caption{Wzorce przepływu}
-	\end{figure}%
-		
-	\noindent Wyrażenie logiczne $W_L$ jest strukturą stworzoną według poniższych zasad:\\
-	\begin{itemize}
-	\item każdy elementarny zbiór $pat(a_i)$, gdzie $i>0$ i każde $a_i$ jest formułą atomiczną, jest wyrażeniem logicznym,
-	\item każde $pat(A)$, gdzie $i>0$ i każde $A_i$ jest albo
-	\begin{itemize}
-	\item atomiczną formułą lub
-	\item logicznym wyrażeniem $pat()$
-	\end{itemize}
-	także jest wyrażeniem logicznym.
-	\end{itemize}
-	\noindent Wstępny algorytm:
-	\begin{enumerate}
-	\item Analiza diagramów aktywności w celu wyciągnięcia z nich wcześniej zdefiniowanych wzorców przepływu.
-	\item Przetłumaczenie wyłuskanych wzorców na wyrażenia logiczne $ W_L$.
-	\item Generowanie specyfikacji logicznej $L$ z wyrażeń logicznych, %i.e. receiving a set of temporal logics formulas.
-	\end{enumerate}
-	
- 		\noindent Algorytm $\Pi$ generujący specyfikację logiczną :\\
-		\begin{enumerate}
-		\item Na początku specyfikacja jest pusta, np. L={\o};
-		\item Najbardziej zagnieżdżone wzorce są przetwarzane jako pierwsze, a następnie mniej zagnieżdżone;
-		\item Jeśli obecnie analizowany wzorzec składa się wyłącznie z formuł atomicznych, specyfikacja logiczna jest rozszerzana, poprzez sumowanie zbiorów, których formuły są złączone z obecnie analizowanym wzorcem pat(), np. $L=L \cup pat() $;
-		\item Jeżeli jakiś argument jest wzorem sam w sobie to:
-		\begin{itemize}
-		\item po pierwsze formuła $f1$  , a potem
-		\item formuła $fk$
-		\end{itemize}
-		tego wzoru(jeśli jakiegoś), lub w innym wypadku wziąć pod uwagę tylko najbardziej zagnieżdżony daleko? na lewo lub prawo,odpowiednio, są podstawiane osobno w miejsce wzorca jako argument.
-		\end{enumerate}
 
 
 	\section{Przykłady}
@@ -353,7 +311,30 @@ Podane wzorce P:
 	
 	
 	
-
+	\section{Działanie programu}
+	\subsection{Jak korzystać z programu}
+	\begin{enumerate}
+	\item Przygotuj plik wzorców z wzorcami i ich logiką.
+	\item Wczytaj odpowiedni plik wzorców, wciskając przycisk "Open file" i korzystając z okna dialogowego.(wczytane zasady pojawią się w dużym polu tekstowym po lewej)
+	\item Przygotuj formulę do przeparsowania i wprowadź ją do "Miejsca na formułę"(pierwsze pole tekstowe od góry)
+	\item Żeby wygenerować specyfikację, wciśnij przycisk "Generate".(specyfikacja pojawi się w dużym polu tekstowym po prawej)
+	\end{enumerate}
+	
+	\textbf{ Uwaga! Pamiętaj o poprawności zapisu reguł w pliku i formuły w polu tekstowym. Nie przestrzeganie zasad struktury pliku uniemożliwi poprawne działanie programu. Zaś błędy w formule, które nie zostały przewidziane mogą zakłamać wynik programu.}
+	
+	Przykład poprawnego zapisu pliku i formuły:
+	
+	TODO screnny i listingi
+	
+	\subsection{Zabezpieczenia}
+	Pole formuły jest zabezpieczone przed następującymi błędami:
+	\begin{itemize}
+	\item Błędna ilość argumentów wzorca,
+	\item Błędna nazwa wzorca,
+	\item Występowanie znaków niedopuszczalnych
+	\item Poprawne nawiasowanie-TODO
+	\item Zbłąkane litery, np. Sequence(a,Seqyence(b,c)d) d to zbłąkana litera
+	\end{itemize}
 	
 	\section{Literatura}
 	%\indent	
