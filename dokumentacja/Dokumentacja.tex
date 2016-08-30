@@ -20,8 +20,13 @@
 %\usepackage{listings}
 %\usepackage{enumerate}
 %\lstloadlanguages{Ada,C++}
+\usepackage{listings}
 
 		\newcommand\tab[1][1cm]{\hspace*{#1}}
+\lstset{
+frame=single,
+title=\lstname 
+}
 
 \begin{document}	
 	% \noindent -  w tym akapicie nie bedzie wciecia
@@ -99,7 +104,8 @@ Paweł \textsc{Ogorzały} \\
 	
 
 	
-	%\tableofcontents
+	\tableofcontents
+	\listoffigures
 	\vfill
 	\newpage
 	%\pagebreak
@@ -290,10 +296,12 @@ Podane wzorce P:
 	\section{Struktura programu}
 	\begin{figure}[H]
 		\centerline{\includegraphics[scale=0.6]{diagram}}
+		\caption{Diagram klasy MainWindow}
 
 	\end{figure}%
 	\begin{figure}[H]
 		\centerline{\includegraphics[scale=0.6]{diagram2}}
+		\caption{Diagram klasy RuleObject}
 
 	\end{figure}%
 	\section{Wygląd GUI}
@@ -303,11 +311,10 @@ Podane wzorce P:
 	\caption{Interfejs graficzny}
 	\end{figure}%
 	
-	WCZYTYWANIE ZASAD LOGIKI	
-	
-	OPCJA ZAPISU-OBRAZEK
-	
-	GENEROWANIE
+	\begin{figure}[H]
+	\centerline{\includegraphics[scale=0.6]{program}}
+	\caption{Działanie programu}
+	\end{figure}%
 	
 	
 	
@@ -322,9 +329,7 @@ Podane wzorce P:
 	
 	\textbf{ Uwaga! Pamiętaj o poprawności zapisu reguł w pliku i formuły w polu tekstowym. Nie przestrzeganie zasad struktury pliku uniemożliwi poprawne działanie programu. Zaś błędy w formule, które nie zostały przewidziane mogą zakłamać wynik programu.}
 	
-	Przykład poprawnego zapisu pliku i formuły:
 	
-	TODO screnny i listingi
 	
 	\subsection{Zabezpieczenia}
 	Pole formuły jest zabezpieczone przed następującymi błędami:
@@ -332,9 +337,30 @@ Podane wzorce P:
 	\item Błędna ilość argumentów wzorca,
 	\item Błędna nazwa wzorca,
 	\item Występowanie znaków niedopuszczalnych
-	\item Poprawne nawiasowanie-TODO
-	\item Zbłąkane litery, np. Sequence(a,Seqyence(b,c)d) d to zbłąkana litera
+	\item Poprawne nawiasowanie formuły
+	\item Błędy zapisu formuły, typu Sequence(a,Seqyence(b,c)d) d to zbłąkana litera
 	\end{itemize}
+	\subsection{Zapis}
+	Składnia:
+		\begin{enumerate}
+		\item NazwaWzorca(argument1,..,argumentK)={formuła wejścia, formuła wyjścia, pozostałe formuły}
+		\item $ \diamond $ w pliku zapisujemy jako <>
+		\item $\Rightarrow $ w pliku zapisujemy jako =>
+		\item $\neg$ w pliku zapisujemy jako $\sim $
+		\item $ \Box $ w pliku zapisujemy jako []
+		\item $\vee $ w pliku zapisujemy jako |
+		\item $ \wedge $ w pliku zapisujemy jako \&
+		\item $\cup$ w pliku zapisujemy jako U
+		
+		\end{enumerate}
+	
+	
+	Przykład poprawnego zapisu pliku:
+	\lstinputlisting{BasicPatterns.txt}
+
+	Przykład poprawnej formuły do przetworzenia:\\
+	\textbf{Sequence(ParallelSplit(a,b,c),d)},\\
+	gdzie a,b,c,d to funkcje atomiczne.	
 	
 	\section{Literatura}
 	%\indent	

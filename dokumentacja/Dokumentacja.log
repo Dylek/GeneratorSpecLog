@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.8.3)  29 AUG 2016 22:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.8.3)  30 AUG 2016 12:48
 entering extended mode
 **./Dokumentacja.tex
 (Dokumentacja.tex
@@ -476,38 +476,65 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks19
 \@floatcapt=\box28
 )
-(Dokumentacja.aux)
+("C:\Users\Cavi Cardan\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.s
+ty"
+\lst@mode=\count91
+\lst@gtempboxa=\box29
+\lst@token=\toks20
+\lst@length=\count92
+\lst@currlwidth=\dimen116
+\lst@column=\count93
+\lst@pos=\count94
+\lst@lostspace=\dimen117
+\lst@width=\dimen118
+\lst@newlines=\count95
+\lst@lineno=\count96
+\lst@maxwidth=\dimen119
+
+("C:\Users\Cavi Cardan\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstmisc.st
+y"
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count97
+\lst@skipnumbers=\count98
+\lst@framebox=\box30
+)
+("C:\Users\Cavi Cardan\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.c
+fg"
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+ (Dokumentacja.aux)
 \openout1 = `Dokumentacja.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT4/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT4/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
 
 ("C:\Users\Cavi Cardan\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mki
 i"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count91
-\scratchdimen=\dimen116
-\scratchbox=\box29
-\nofMPsegments=\count92
-\nofMParguments=\count93
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count94
-\MPscratchDim=\dimen117
-\MPnumerator=\count95
-\makeMPintoPDFobject=\count96
-\everyMPtoPDFconversion=\toks21
+\scratchcounter=\count99
+\scratchdimen=\dimen120
+\scratchbox=\box31
+\nofMPsegments=\count100
+\nofMParguments=\count101
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count102
+\MPscratchDim=\dimen121
+\MPnumerator=\count103
+\makeMPintoPDFobject=\count104
+\everyMPtoPDFconversion=\toks22
 ) ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty"
 Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -553,119 +580,138 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
+\c@lstlisting=\count105
+
 
 LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <38> not available
-(Font)              size <35.83> substituted on input line 57.
+(Font)              size <35.83> substituted on input line 62.
 
-LaTeX Font Info:    Try loading font information for OML+plm on input line 72.
+LaTeX Font Info:    Try loading font information for OML+plm on input line 77.
 ("C:\Users\Cavi Cardan\AppData\Roaming\MiKTeX\2.9\tex\latex\polski\omlplm.fd"
 File: omlplm.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
-LaTeX Font Info:    Try loading font information for OMS+plsy on input line 72.
+LaTeX Font Info:    Try loading font information for OMS+plsy on input line 77.
 
 
 ("C:\Users\Cavi Cardan\AppData\Roaming\MiKTeX\2.9\tex\latex\polski\omsplsy.fd"
 File: omsplsy.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
-LaTeX Font Info:    Try loading font information for OMX+plex on input line 72.
+LaTeX Font Info:    Try loading font information for OMX+plex on input line 77.
 
 ("C:\Users\Cavi Cardan\AppData\Roaming\MiKTeX\2.9\tex\latex\polski\omxplex.fd"
 File: omxplex.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <10.95> on input line 72.
+(Font)              <10.95> on input line 77.
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <8> on input line 72.
+(Font)              <8> on input line 77.
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <6> on input line 72.
-LaTeX Font Info:    Try loading font information for U+lasy on input line 72.
+(Font)              <6> on input line 77.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 77.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ulasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 ) [1
 
-{C:/Users/Cavi Cardan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 122.
+{C:/Users/Cavi Cardan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] (Doku
+mentacja.toc)
+\tf@toc=\write3
+\openout3 = `Dokumentacja.toc'.
+
+
+(Dokumentacja.lof)
+\tf@lof=\write4
+\openout4 = `Dokumentacja.lof'.
+
+ [1]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 128.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 122.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 128.
 
-Underfull \hbox (badness 10000) in paragraph at lines 146--159
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 146--159
+Underfull \hbox (badness 10000) in paragraph at lines 152--165
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 146--159
-
- []
-
-[1]
-Underfull \hbox (badness 10000) in paragraph at lines 168--176
+Underfull \hbox (badness 10000) in paragraph at lines 152--165
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 168--176
+Underfull \hbox (badness 10000) in paragraph at lines 152--165
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 186--201
+Underfull \hbox (badness 10000) in paragraph at lines 174--182
 
  []
 
-[3] <diagram.png, id=32, 824.07875pt x 889.3225pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 174--182
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 192--207
+
+ []
+
+[4] <diagram.png, id=35, 824.07875pt x 889.3225pt>
 File: diagram.png Graphic file (type png)
  <use diagram.png>
-Package pdftex.def Info: diagram.png used on input line 292.
+Package pdftex.def Info: diagram.png used on input line 298.
 (pdftex.def)             Requested size: 494.45107pt x 533.59761pt.
 
-<diagram2.png, id=33, 307.1475pt x 238.8925pt>
+<diagram2.png, id=36, 307.1475pt x 238.8925pt>
 File: diagram2.png Graphic file (type png)
  <use diagram2.png>
-Package pdftex.def Info: diagram2.png used on input line 296.
+Package pdftex.def Info: diagram2.png used on input line 303.
 (pdftex.def)             Requested size: 184.28992pt x 143.3366pt.
- [4] [5 <./diagram.png (PNG copy)>] <GUI.jpg, id=40, 749.80125pt x 449.42906pt>
+ [5] [6 <./diagram.png (PNG copy)>] <GUI.jpg, id=44, 749.80125pt x 449.42906pt>
 File: GUI.jpg Graphic file (type jpg)
 
 <use GUI.jpg>
-Package pdftex.def Info: GUI.jpg used on input line 302.
+Package pdftex.def Info: GUI.jpg used on input line 310.
 (pdftex.def)             Requested size: 449.88422pt x 269.6595pt.
- [6 <./diagram2.png (PNG copy)> <./GUI.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 341--343
+ <program.png, id=45, 743.77875pt x 453.19313pt>
+File: program.png Graphic file (type png)
+
+<use program.png>
+Package pdftex.def Info: program.png used on input line 315.
+(pdftex.def)             Requested size: 446.27069pt x 271.91797pt.
+ [7 <./diagram2.png (PNG copy)> <./GUI.jpg>] [8 <./program.png>] (BasicPatterns
+.txt)
+Underfull \hbox (badness 10000) in paragraph at lines 367--369
 
  []
 
-[7] (Dokumentacja.aux)
+[9] (Dokumentacja.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 2.17pt have occurred.
 
  ) 
 Here is how much of TeX's memory you used:
- 2939 strings out of 493335
- 38270 string characters out of 3136661
- 104766 words of memory out of 3000000
- 6385 multiletter control sequences out of 15000+200000
+ 4546 strings out of 493335
+ 59454 string characters out of 3136661
+ 136681 words of memory out of 3000000
+ 7969 multiletter control sequences out of 15000+200000
  17684 words of font info for 42 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,6n,25p,683b,259s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 40i,6n,32p,683b,963s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Cavi Cardan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\d
 pi600\ecbx1200.pk>{C:/Users/Cavi Cardan/AppData/Roaming/MiKTeX/2.9/fonts/enc/dv
-ips/pl/plms.enc} <C:\Users\Cavi Cardan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour
-\jknappen\ec\dpi600\ecbx1095.pk>{C:/Users/Cavi Cardan/AppData/Roaming/MiKTeX/2.
-9/fonts/enc/dvips/pl/plrm.enc}{C:/Users/Cavi Cardan/AppData/Roaming/MiKTeX/2.9/
-fonts/enc/dvips/pl/plmi.enc} <C:\Users\Cavi Cardan\AppData\Local\MiKTeX\2.9\fon
-ts\pk\ljfour\jknappen\ec\dpi600\ecti1095.pk> <C:\Users\Cavi Cardan\AppData\Loca
-l\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1095.pk> <C:\Users\Cavi Car
+ips/pl/plms.enc}{C:/Users/Cavi Cardan/AppData/Roaming/MiKTeX/2.9/fonts/enc/dvip
+s/pl/plrm.enc}{C:/Users/Cavi Cardan/AppData/Roaming/MiKTeX/2.9/fonts/enc/dvips/
+pl/plmi.enc} <C:\Users\Cavi Cardan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jkn
+appen\ec\dpi600\ecti1095.pk> <C:\Users\Cavi Cardan\AppData\Local\MiKTeX\2.9\fon
+ts\pk\ljfour\jknappen\ec\dpi600\ecrm1095.pk> <C:\Users\Cavi Cardan\AppData\Loca
+l\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\Cavi Car
 dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk> <C
 :\Users\Cavi Cardan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
 \eccc1200.pk> <C:\Users\Cavi Cardan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jk
@@ -683,9 +729,9 @@ e1/public/pl/plr10.pfb><C:/Users/Cavi Cardan/AppData/Roaming/MiKTeX/2.9/fonts/t
 ype1/public/pl/plr8.pfb><C:/Users/Cavi Cardan/AppData/Roaming/MiKTeX/2.9/fonts/
 type1/public/pl/plsy10.pfb><C:/Users/Cavi Cardan/AppData/Roaming/MiKTeX/2.9/fon
 ts/type1/public/pl/plsy8.pfb>
-Output written on Dokumentacja.pdf (8 pages, 318145 bytes).
+Output written on Dokumentacja.pdf (10 pages, 350745 bytes).
 PDF statistics:
- 442 PDF objects out of 1000 (max. 8388607)
+ 480 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
