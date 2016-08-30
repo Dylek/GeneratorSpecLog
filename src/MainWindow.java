@@ -375,11 +375,35 @@ private ArrayList<RuleObject> parseWL(String wl) {
      * 2-Jedna z podanych formuł ma błędną ilość argumentów.
      * 3-Formuła zawiera nie dozwolone znaki.
      * 4-Formuła zawira błędne nawiasowanie.
+     * 5-zbłakane litery
      *
      */
     private int checkFormulaField(String text, ArrayList<RuleObject> ruleSeq) {
 
-        //TODO sprawdzanie nawiasowania
+        ArrayList<String> check=new ArrayList<String>();
+        for(int i=0;i<text.length();i++){
+            String toCheck=text.substring(i,i+1);
+           // String last=check.get(check.size()-1);
+            System.out.println(i+":"+text.substring(i,i+1));
+            if(toCheck.equals("(")){
+                check.add("(");
+            }else
+            if( text.substring(i,i+1).equals(")")){
+                if(check.size()>0 && check.get(check.size()-1).equals("(")){
+                    check.remove(check.size()-1);
+                }else{
+                    check.add(")");
+                }
+            }
+
+
+                }
+        for(String str : check){
+            System.out.print("   "+str);
+        }
+        if(check.size()>0){
+            return 4;
+        }
 
         Pattern pattern=Pattern.compile("[!@#$%^&*|{}/\\`]");
         Matcher mat=pattern.matcher(text);
@@ -388,9 +412,21 @@ private ArrayList<RuleObject> parseWL(String wl) {
         }
 
         for(RuleObject obj: ruleSeq){
+            //do sprawdzenia
+            for(String argument :obj.getRuleArgs()){
+                if(isAtomic(argument) && argument.contains("(")){
+                    return 1;
+                }
+                if(!isAtomic(argument) && argument.length()>argument.lastIndexOf(")")){
+                    return 5;
+                }
+            }
+
+            //to coś nie pyka
             if(!ruleAtt.containsKey(obj.getRuleName())){
                 return 1;
             }
+            //to działa
             if(obj.getRuleArgs().size()!=ruleAtt.get(obj.getRuleName()).length){
                 return 2;
             }
