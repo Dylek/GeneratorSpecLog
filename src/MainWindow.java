@@ -275,7 +275,9 @@ public class MainWindow extends JFrame {
             case 1:generatedOutput.append("\nBłąd w formule!\n Jedna z podanych formuł nie istnieje.");break;
             case 2:generatedOutput.append("\nBłąd w formule!\n Jedna z podanych formuł ma błędną ilość argumentów.");break;
             case 3:generatedOutput.append("\nBłąd w formule!\n Formuła zawiera nie dozwolone znaki.");break;
-            case 4:generatedOutput.append("\nBłąd w formule!\n Formuła zawira błędne nawiasowanie.");break;
+            case 4:generatedOutput.append("\nBłąd w formule!\n Formuła zawiera błędne nawiasowanie.");break;
+            case 5:generatedOutput.append("\nBłąd w formule!\n Formuła zawiera błędy.");break;
+
             default:generatedOutput.append("\nNie określony błąd. Coś poszło nie tak.");break;
         }
 
@@ -380,11 +382,12 @@ private ArrayList<RuleObject> parseWL(String wl) {
      */
     private int checkFormulaField(String text, ArrayList<RuleObject> ruleSeq) {
 
+        if(text.length()>text.substring(0,text.lastIndexOf(")")+1).length()){
+            return 5;
+        }
         ArrayList<String> check=new ArrayList<String>();
         for(int i=0;i<text.length();i++){
             String toCheck=text.substring(i,i+1);
-           // String last=check.get(check.size()-1);
-            System.out.println(i+":"+text.substring(i,i+1));
             if(toCheck.equals("(")){
                 check.add("(");
             }else
@@ -395,12 +398,8 @@ private ArrayList<RuleObject> parseWL(String wl) {
                     check.add(")");
                 }
             }
-
-
-                }
-        for(String str : check){
-            System.out.print("   "+str);
         }
+
         if(check.size()>0){
             return 4;
         }
@@ -412,12 +411,12 @@ private ArrayList<RuleObject> parseWL(String wl) {
         }
 
         for(RuleObject obj: ruleSeq){
-            //do sprawdzenia
+            //działa
             for(String argument :obj.getRuleArgs()){
                 if(isAtomic(argument) && argument.contains("(")){
                     return 1;
                 }
-                if(!isAtomic(argument) && argument.length()>argument.lastIndexOf(")")){
+                if(!isAtomic(argument) && argument.length()>argument.substring(0,argument.lastIndexOf(")")+1).length()){
                     return 5;
                 }
             }
