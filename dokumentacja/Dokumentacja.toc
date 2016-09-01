@@ -3,11 +3,11 @@
 \contentsline {section}{\numberline {2}Pow\IeC {\'o}d tworzenia generatora}{2}
 \contentsline {section}{\numberline {3}Wa\IeC {\.z}ne}{2}
 \contentsline {section}{\numberline {4}Specyfikacja logiczna}{2}
-\contentsline {section}{\numberline {5}Przyk\IeC {\l }ady}{4}
-\contentsline {section}{\numberline {6}Struktura programu}{6}
-\contentsline {section}{\numberline {7}Wygl\IeC {\k a}d GUI}{7}
-\contentsline {section}{\numberline {8}Dzia\IeC {\l }anie programu}{8}
-\contentsline {subsection}{\numberline {8.1}Jak korzysta\IeC {\'c} z programu}{8}
-\contentsline {subsection}{\numberline {8.2}Zabezpieczenia}{8}
-\contentsline {subsection}{\numberline {8.3}Zapis}{9}
-\contentsline {section}{\numberline {9}Literatura}{9}
+\contentsline {section}{\numberline {5}Generowanie specyfikacji logicznej}{4}
+\contentsline {section}{\numberline {6}Struktura programu}{7}
+\contentsline {section}{\numberline {7}Wygl\IeC {\k a}d GUI}{8}
+\contentsline {section}{\numberline {8}Dzia\IeC {\l }anie programu}{9}
+\contentsline {subsection}{\numberline {8.1}Jak korzysta\IeC {\'c} z programu}{9}
+\contentsline {subsection}{\numberline {8.2}Zabezpieczenia}{9}
+\contentsline {subsection}{\numberline {8.3}Zapis}{10}
+\contentsline {section}{\numberline {9}Literatura}{11}

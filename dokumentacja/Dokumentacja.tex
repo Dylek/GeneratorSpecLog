@@ -24,6 +24,8 @@
 
 		\newcommand\tab[1][1cm]{\hspace*{#1}}
 \lstset{
+breakatwhitespace=true,
+breaklines=true,   
 frame=single,
 title=\lstname 
 }
@@ -106,6 +108,7 @@ Paweł \textsc{Ogorzały} \\
 	
 	\tableofcontents
 	\listoffigures
+	\lstlistoflistings
 	\vfill
 	\newpage
 	%\pagebreak
@@ -207,8 +210,26 @@ Paweł \textsc{Ogorzały} \\
 	
 
 
-	\section{Przykłady}
-Podane wzorce P:
+	\section{Generowanie specyfikacji logicznej}
+	\noindent Sposób postępowania:
+	\begin{enumerate}
+	\item Analiza diagramów aktywności w celu wyciągnięcia z nich wcześniej zdefiniowanych wzorców przepływu.
+	\item Przetłumaczenie wyłuskanych wzorców na wyrażenia logiczne $ W_L$.
+	\item Generowanie specyfikacji logicznej $L$ z wyrażeń logicznych, %i.e. receiving a set of temporal logics formulas.
+	\end{enumerate}
+Wzorce przepływu:
+	\begin{itemize}
+	\item Sekwencja, sequence
+	\item Współbieżność, concurrent fork/join
+	\item Pętla while, loop while
+	\item Rozgałęzienie, branching
+	\end{itemize}
+	\begin{figure}[H]
+		\centerline{\includegraphics[scale=1.5]{workflows}}
+		\caption{Wzorce przepływu}
+	\end{figure}%	
+	
+Podane wzorce P i zbiory ich formuł:
 	\begin{itemize}
 					\item Sequence(f1,f4)
 		\begin{itemize}
@@ -256,8 +277,7 @@ Podane wzorce P:
 		\end{itemize}
 	\end{itemize}	
 	
-	Wyjście programu dla:
-	%TUTAJ OBRAZEK UML, POTEM WYCIĄGNIĘTA FORMUŁA I WYNIK
+	Wyjście algorytmu dla:
 	\begin{itemize}
 	\item $W_L= $ Concur(a,b,c,d) to:\\
 	$L= \{ a   \Rightarrow     \diamond b   \wedge    \diamond c $,
@@ -356,11 +376,14 @@ Podane wzorce P:
 	
 	
 	Przykład poprawnego zapisu pliku:
-	\lstinputlisting{BasicPatterns.txt}
+	\lstinputlisting[caption={Plik wejściowy}]{BasicPatterns.txt}
 
 	Przykład poprawnej formuły do przetworzenia:\\
-	\textbf{Sequence(ParallelSplit(a,b,c),d)},\\
-	gdzie a,b,c,d to funkcje atomiczne.	
+	\textbf{Sequence(Sequence(a,b),d)},\\
+	gdzie a,b,c,d to funkcje atomiczne.	\\
+	
+	Przykład pliku wyjściowego programu:
+	\lstinputlisting[caption=Wyjście programu]{logika.txt}
 	
 	\section{Literatura}
 	%\indent	

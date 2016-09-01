@@ -1,0 +1,3 @@
+Dla formuly: Sequence(Sequence(a,b),d)
+Wygenerowano logike:
+[](a V b=><>d),[](~a V b=>~<>d),[]~(a V b & d) U [](a=><>b),[](~a=>~<>b),[]~(a & b)
