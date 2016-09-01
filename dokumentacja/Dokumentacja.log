@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.8.3)  1 SEP 2016 16:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.8.3)  1 SEP 2016 16:56
 entering extended mode
 **./Dokumentacja.tex
 (Dokumentacja.tex
@@ -665,57 +665,64 @@ Underfull \hbox (badness 10000) in paragraph at lines 195--210
 
  []
 
-<workflows.png, id=31, 184.2885pt x 240.9pt>
+<diagramUML.png, id=31, 412.54124pt x 553.06625pt>
+File: diagramUML.png Graphic file (type png)
+ <use diagramUML.png>
+Package pdftex.def Info: diagramUML.png used on input line 222.
+(pdftex.def)             Requested size: 247.52666pt x 331.8423pt.
+
+[4] <workflows.png, id=36, 184.2885pt x 240.9pt>
 File: workflows.png Graphic file (type png)
  <use workflows.png>
-Package pdftex.def Info: workflows.png used on input line 228.
+Package pdftex.def Info: workflows.png used on input line 234.
 (pdftex.def)             Requested size: 276.43205pt x 361.34909pt.
- [4] [5 <./workflows.png>] <diagram3.png, id=39, 791.95876pt x 734.745pt>
+ [5 <./diagramUML.png>] [6 <./workflows.png>]
+<diagram3.png, id=46, 791.95876pt x 734.745pt>
 File: diagram3.png Graphic file (type png)
  <use diagram3.png>
-Package pdftex.def Info: diagram3.png used on input line 318.
+Package pdftex.def Info: diagram3.png used on input line 324.
 (pdftex.def)             Requested size: 475.17892pt x 440.85039pt.
 
-<diagram2.png, id=40, 307.1475pt x 238.8925pt>
+<diagram2.png, id=47, 307.1475pt x 238.8925pt>
 File: diagram2.png Graphic file (type png)
  <use diagram2.png>
-Package pdftex.def Info: diagram2.png used on input line 323.
+Package pdftex.def Info: diagram2.png used on input line 329.
 (pdftex.def)             Requested size: 184.28992pt x 143.3366pt.
- [6] [7 <./diagram3.png (PNG copy)>] <GUI.jpg, id=48, 749.80125pt x 449.42906pt
+ [7] [8 <./diagram3.png (PNG copy)>] <GUI.jpg, id=54, 749.80125pt x 449.42906pt
 >
 File: GUI.jpg Graphic file (type jpg)
 
 <use GUI.jpg>
-Package pdftex.def Info: GUI.jpg used on input line 330.
-(pdftex.def)             Requested size: 449.88422pt x 269.6595pt.
- <program.png, id=49, 743.77875pt x 453.19313pt>
+Package pdftex.def Info: GUI.jpg used on input line 336.
+(pdftex.def)             Requested size: 524.8573pt x 314.59819pt.
+ <program.png, id=55, 743.77875pt x 453.19313pt>
 File: program.png Graphic file (type png)
 
 <use program.png>
-Package pdftex.def Info: program.png used on input line 335.
-(pdftex.def)             Requested size: 446.27069pt x 271.91797pt.
- [8 <./diagram2.png (PNG copy)> <./GUI.jpg>] [9 <./program.png>] (BasicPatterns
-.txt)
-Underfull \hbox (badness 10000) in paragraph at lines 381--384
+Package pdftex.def Info: program.png used on input line 341.
+(pdftex.def)             Requested size: 520.64157pt x 317.23302pt.
+ [9 <./diagram2.png (PNG copy)> <./GUI.jpg>] [10 <./program.png>] (BasicPattern
+s.txt)
+Underfull \hbox (badness 10000) in paragraph at lines 387--390
 
  []
 
 (logika.txt)
-Underfull \hbox (badness 10000) in paragraph at lines 390--392
+Underfull \hbox (badness 10000) in paragraph at lines 396--398
 
  []
 
-[10] [11] (Dokumentacja.aux)
+[11] [12] (Dokumentacja.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 2.17pt have occurred.
 
  ) 
 Here is how much of TeX's memory you used:
- 4558 strings out of 493335
- 59611 string characters out of 3136661
- 155681 words of memory out of 3000000
- 7974 multiletter control sequences out of 15000+200000
+ 4563 strings out of 493335
+ 59700 string characters out of 3136661
+ 156681 words of memory out of 3000000
+ 7978 multiletter control sequences out of 15000+200000
  17684 words of font info for 42 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,6n,32p,683b,1008s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -744,9 +751,9 @@ e1/public/pl/plr10.pfb><C:/Users/Cavi Cardan/AppData/Roaming/MiKTeX/2.9/fonts/t
 ype1/public/pl/plr8.pfb><C:/Users/Cavi Cardan/AppData/Roaming/MiKTeX/2.9/fonts/
 type1/public/pl/plsy10.pfb><C:/Users/Cavi Cardan/AppData/Roaming/MiKTeX/2.9/fon
 ts/type1/public/pl/plsy8.pfb>
-Output written on Dokumentacja.pdf (12 pages, 351144 bytes).
+Output written on Dokumentacja.pdf (13 pages, 360715 bytes).
 PDF statistics:
- 484 PDF objects out of 1000 (max. 8388607)
+ 491 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
