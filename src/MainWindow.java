@@ -441,13 +441,7 @@ private ArrayList<RuleObject> parseWL(String wl) {
         return 0;
     }
 
-    private String getCos(String [] table){
-        String t="";
-        for(int i=0;i<table.length;i++){
-            t=t.concat(","+table[i]);
-        }
-        return  t;
-    }
+
     //tu musi zostać podane Zasada-argumernty
     private String getF_en(String nonAtomic){
         RuleObject obj=new RuleObject();
