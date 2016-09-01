@@ -110,6 +110,7 @@ public class MainWindow extends JFrame {
          * po wczytaniu nie zmieniamy już zasad logiki
          */
         loadedLogicRules.setEditable(false);
+        generatedOutput.setEditable(false);
         generatedOutput.updateUI();
         formulaField.setText("Miejsce na formule");
     }
