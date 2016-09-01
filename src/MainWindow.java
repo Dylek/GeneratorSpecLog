@@ -56,7 +56,6 @@ public class MainWindow extends JFrame {
     Hashtable<String,String[]> ruleLogic;
 
     public MainWindow(){
-//TODO może jakieś okienko legendy, ~to negacja. [] to ten kwadrat z logiki temporalnej itp., tak u dołu strony
         ruleAtt=new Hashtable<>();
         ruleLogic=new Hashtable<>();
 
@@ -79,9 +78,9 @@ public class MainWindow extends JFrame {
         outputPanel=new JScrollPane(generatedOutput);
         formulaPane=new JScrollPane(formulaField);
 
-        rulesPanel.setPreferredSize(new Dimension(475,450));
-        outputPanel.setPreferredSize(new Dimension(475,450));
-        formulaPane.setPreferredSize(new Dimension(955,50));
+        rulesPanel.setPreferredSize(new Dimension(500,460));
+        outputPanel.setPreferredSize(new Dimension(500,460));
+        formulaPane.setPreferredSize(new Dimension(1005,50));
         Container container = mainFrame.getContentPane();
         container.setLayout(new FlowLayout(FlowLayout.LEFT));
 
@@ -91,7 +90,7 @@ public class MainWindow extends JFrame {
         menuBar.add(saveFileB);
         mainFrame.setJMenuBar(menuBar);
 
-        mainFrame.setSize(new Dimension(980,600));
+        mainFrame.setSize(new Dimension(1030,600));
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setTitle("Generator Specyfikacji Logicznej");
@@ -241,7 +240,7 @@ public class MainWindow extends JFrame {
             loadedLogicRules.append("\n  "+s);
         }
         System.out.println("Wczytano");
-        loadedLogicRules.append("\n _______________________________________________________________");
+        loadedLogicRules.append("\n __________________________________________________");
 
         //Kod odpowiedzialkny za wyłuskiwanie zasad, atrubutów i logiki
         String[] splitFirst=fileText.split("}");
@@ -327,27 +326,14 @@ private ArrayList<RuleObject> parseWL(String wl) {
     parrsed.add(obj);
     for(int o=0;o<obj.getRuleArgs().size();o++){
         if(!isAtomic(obj.getRuleArgs().get(o))){
-            //jeśli wykryje kolejny patter,
-            //zrobi z niego parseWL :D
+
             ArrayList<RuleObject> referenced=parseWL(obj.getRuleArgs().get(o));
             for(RuleObject rek: referenced){
                 parrsed.add(rek);
             }
         }
     }
-    /*
-    ArrayList<String> temp2=new ArrayList<String>();
-    for(int j=0;j<temp2.size();j++){
-        if(!isAtomic(temp2.get(j))){
-            RuleObject obj2=new RuleObject();
-            obj2.setRuleName(wl.substring(0,wl.indexOf("(")));
-            obj2.setRuleArgs(getArgs(wl.substring(wl.indexOf("(")+1,wl.lastIndexOf(")")+1)));
-            temp.add(obj2);
-            for(int l=0;l<obj2.getRuleArgs().size();l++){
-                temp2.add(j+l+1,obj2.getRuleArgs().get(l));
-            }
-        }
-    }*/
+
     return  parrsed;
 }
 
