@@ -105,7 +105,9 @@ public class MainWindow extends JFrame {
 
         generatedOutput.setText("Miejsce na wygenerowaną specyfikację");
         generatedOutput.updateUI();
+        generatedOutput.setLineWrap(true);
         loadedLogicRules.setText("Miejsce na zasady logiki, m.in Sequence,Concurrent ");
+        loadedLogicRules.setLineWrap(true);
         /**
          * po wczytaniu nie zmieniamy już zasad logiki
          */
