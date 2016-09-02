@@ -93,7 +93,8 @@ public class MainWindow extends JFrame {
         mainFrame.setSize(new Dimension(1030,600));
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setLocationRelativeTo(null);
-        mainFrame.setTitle("Generator Specyfikacji Logicznej");
+       // mainFrame.setTitle("Generator Specyfikacji Logicznej");//TODO
+        mainFrame.setTitle("Logic Specification Generator");
         mainFrame.setResizable(false);
         mainFrame.setVisible(true);
         container.add(formulaPane);
@@ -103,10 +104,12 @@ public class MainWindow extends JFrame {
 
         loadListeners();
 
-        generatedOutput.setText("Miejsce na wygenerowaną specyfikację");
+        //generatedOutput.setText("Miejsce na wygenerowaną specyfikację");//TODO
+        generatedOutput.setText("Space for generated specification");
         generatedOutput.updateUI();
         generatedOutput.setLineWrap(true);
-        loadedLogicRules.setText("Miejsce na zasady logiki, m.in Sequence,Concurrent ");
+        //loadedLogicRules.setText("Miejsce na zasady logiki, m.in Sequence,Concurrent ");//TODO
+        loadedLogicRules.setText("Space for logic rules");
         loadedLogicRules.setLineWrap(true);
         /**
          * po wczytaniu nie zmieniamy już zasad logiki
@@ -114,7 +117,8 @@ public class MainWindow extends JFrame {
         loadedLogicRules.setEditable(false);
         generatedOutput.setEditable(false);
         generatedOutput.updateUI();
-        formulaField.setText("Miejsce na formule");
+        //formulaField.setText("Miejsce na formule");//TODO
+        formulaField.setText("Space for WL formula");
     }
 
     private void initLookAndFeel() {
@@ -221,8 +225,8 @@ public class MainWindow extends JFrame {
     }
 
     private void parseFileIntoRules(File file){
-        loadedLogicRules.setText("Wczytane zasady:\n");
-        System.out.println("Parsuje");
+        loadedLogicRules.setText("Loaded rules:\n");//TODO
+        System.out.println("Parsing...");//TODO
         String fileText="";
 
         //osobna zmienna na logike z pliku, a osobna na wyświeltanies
@@ -242,7 +246,7 @@ public class MainWindow extends JFrame {
         for(String s:loadedFileLines){
             loadedLogicRules.append("\n  "+s);
         }
-        System.out.println("Wczytano");
+        System.out.println("Loaded");//TODO
         loadedLogicRules.append("\n __________________________________________________");
 
         //Kod odpowiedzialkny za wyłuskiwanie zasad, atrubutów i logiki
@@ -265,22 +269,22 @@ public class MainWindow extends JFrame {
     }
 
     private String generateSpecLog(){
-        System.out.println("Generuje");
+        System.out.println("Generating...");//TODO
         int formulaState=0;
 
 
         ArrayList<RuleObject> ruleSeq=parseWL(formulaField.getText());
 
         formulaState=checkFormulaField(formulaField.getText(),ruleSeq);
-        switch(formulaState){
-            case 0: generatedOutput.append("\nFormuła w porządku. Rozpoczynam generowanie.");break;
-            case 1:generatedOutput.append("\nBłąd w formule!\n Jedna z podanych formuł nie istnieje.");break;
-            case 2:generatedOutput.append("\nBłąd w formule!\n Jedna z podanych formuł ma błędną ilość argumentów.");break;
-            case 3:generatedOutput.append("\nBłąd w formule!\n Formuła zawiera nie dozwolone znaki.");break;
-            case 4:generatedOutput.append("\nBłąd w formule!\n Formuła zawiera błędne nawiasowanie.");break;
-            case 5:generatedOutput.append("\nBłąd w formule!\n Formuła zawiera błędy.");break;
+        switch(formulaState){//TODO
+            case 0: generatedOutput.append("\nThe formula in order. Starting to generate output.");break;
+            case 1:generatedOutput.append("\nError in formula!\n One of given formuls does not exist.");break;
+            case 2:generatedOutput.append("\nError in formula!\n One of given formuls has wrong number of arguments.");break;
+            case 3:generatedOutput.append("\nError in formula!\n The formula contains invalid characters.");break;
+            case 4:generatedOutput.append("\nError in formula!\n The formula contains incorrect parenthesis.");break;
+            case 5:generatedOutput.append("\nError in formula!\n The formula contains errors.");break;
 
-            default:generatedOutput.append("\nNie określony błąd. Coś poszło nie tak.");break;
+            default:generatedOutput.append("\nUnknown error. Something did not go right.");break;
         }
 
 
@@ -313,7 +317,7 @@ public class MainWindow extends JFrame {
 
                 }
             }
-            generatedOutput.setText("Dla formuly: "+formulaField.getText()+"\nWygenerowano logike:\n"+L);
+            generatedOutput.setText("For formula: "+formulaField.getText()+"\n the following logic was generated:\n"+L);//TODO
         }
 
         return L;
